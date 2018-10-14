@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;net461</TargetFrameworks>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\AspNetCore.Validation\Rocket.Surgery.AspNetCore.Validation.csproj" />
+        <ProjectReference Include="..\..\src\Core.Validation\Rocket.Surgery.Core.Validation.csproj" />
+        <ProjectReference Include="..\..\src\Vue.Validation\Rocket.Surgery.Vue.Validation.csproj" />
+        <PackageReference Include="NodaTime.Serialization.JsonNet" />
+        <PackageReference Include="NodaTime.Testing" />
+        <PackageReference Include="Rocket.Surgery.Extensions" />
+        <PackageReference Include="Rocket.Surgery.Extensions.CommandLine" />
+        <PackageReference Include="Rocket.Surgery.Extensions.DependencyInjection" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="xunit.runner.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+</Project>
