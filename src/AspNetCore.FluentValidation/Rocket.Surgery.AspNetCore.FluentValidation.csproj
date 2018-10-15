@@ -7,6 +7,6 @@
         <PackageReference Include="FluentValidation.AspNetCore" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Core.Validation\Rocket.Surgery.Core.Validation.csproj" />
+        <ProjectReference Include="..\FluentValidation\Rocket.Surgery.FluentValidation.csproj" />
     </ItemGroup>
 </Project>

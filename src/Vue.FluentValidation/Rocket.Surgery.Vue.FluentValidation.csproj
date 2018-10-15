@@ -4,7 +4,7 @@
         <AssemblyTitle>Rocket.Surgery Validation for Vue from .NET Core</AssemblyTitle>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Core.Validation\Rocket.Surgery.Core.Validation.csproj" />
+        <ProjectReference Include="..\FluentValidation\Rocket.Surgery.FluentValidation.csproj" />
         <PackageReference Include="Rocket.Surgery.Extensions.CommandLine.Abstractions" />
     </ItemGroup>
 </Project>

@@ -37,13 +37,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{33F5FD26-4
 		test\Directory.Build.targets = test\Directory.Build.targets
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.Validation.Tests", "test\Tests\Rocket.Surgery.Validation.Tests.csproj", "{2F38CA7B-3D7A-408A-B52A-3595FE81B040}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.FluentValidation.Tests", "test\Tests\Rocket.Surgery.FluentValidation.Tests.csproj", "{2F38CA7B-3D7A-408A-B52A-3595FE81B040}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.AspNetCore.Validation", "src\AspNetCore.Validation\Rocket.Surgery.AspNetCore.Validation.csproj", "{B530A2CF-BA3F-48A8-B058-3E60DC1C9B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.AspNetCore.FluentValidation", "src\AspNetCore.FluentValidation\Rocket.Surgery.AspNetCore.FluentValidation.csproj", "{B530A2CF-BA3F-48A8-B058-3E60DC1C9B0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.Core.Validation", "src\Core.Validation\Rocket.Surgery.Core.Validation.csproj", "{E1C046B7-6B48-4BA8-8DCC-0A542CD6EB45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.FluentValidation", "src\FluentValidation\Rocket.Surgery.FluentValidation.csproj", "{E1C046B7-6B48-4BA8-8DCC-0A542CD6EB45}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.Vue.Validation", "src\Vue.Validation\Rocket.Surgery.Vue.Validation.csproj", "{08B4BB0E-2FF9-4625-9F21-15A3C21F7CED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocket.Surgery.Vue.FluentValidation", "src\Vue.FluentValidation\Rocket.Surgery.Vue.FluentValidation.csproj", "{08B4BB0E-2FF9-4625-9F21-15A3C21F7CED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

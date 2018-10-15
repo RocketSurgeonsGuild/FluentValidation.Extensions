@@ -3,9 +3,9 @@
         <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;net461</TargetFrameworks>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\src\AspNetCore.Validation\Rocket.Surgery.AspNetCore.Validation.csproj" />
-        <ProjectReference Include="..\..\src\Core.Validation\Rocket.Surgery.Core.Validation.csproj" />
-        <ProjectReference Include="..\..\src\Vue.Validation\Rocket.Surgery.Vue.Validation.csproj" />
+        <ProjectReference Include="..\..\src\AspNetCore.FluentValidation\Rocket.Surgery.AspNetCore.FluentValidation.csproj" />
+        <ProjectReference Include="..\..\src\FluentValidation\Rocket.Surgery.Core.FluentValidation.csproj" />
+        <ProjectReference Include="..\..\src\Vue.FluentValidation\Rocket.Surgery.Vue.FluentValidation.csproj" />
         <PackageReference Include="NodaTime.Serialization.JsonNet" />
         <PackageReference Include="NodaTime.Testing" />
         <PackageReference Include="Rocket.Surgery.Extensions" />
