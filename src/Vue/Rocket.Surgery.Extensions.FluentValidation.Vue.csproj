@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
         <AssemblyTitle>Rocket.Surgery Validation for Vue from .NET Core</AssemblyTitle>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\FluentValidation\Rocket.Surgery.FluentValidation.csproj" />
+        <ProjectReference Include="..\FluentValidation\Rocket.Surgery.Extensions.FluentValidation.csproj" />
         <PackageReference Include="Rocket.Surgery.Extensions.CommandLine.Abstractions" />
     </ItemGroup>
 </Project>
