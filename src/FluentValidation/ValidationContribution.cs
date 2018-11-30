@@ -1,10 +1,10 @@
-﻿using Rocket.Surgery.Core.Validation;
+﻿using Rocket.Surgery.Extensions.FluentValidation;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.DependencyInjection;
 
 [assembly: Convention(typeof(ValidationConvention))]
 
-namespace Rocket.Surgery.Core.Validation
+namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
     /// Class ValidationConvention.

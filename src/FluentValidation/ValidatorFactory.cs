@@ -6,7 +6,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.Validators;
 
-namespace Rocket.Surgery.Core.Validation
+namespace Rocket.Surgery.Extensions.FluentValidation
 {
     class ValidatorFactory : ValidatorFactoryBase
     {

@@ -14,14 +14,14 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NodaTime;
-using Rocket.Surgery.Vue.Validation;
+using Rocket.Surgery.Extensions.FluentValidation.Vue;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Conventions.Reflection;
 using Rocket.Surgery.Extensions.CommandLine;
 
 [assembly: Convention(typeof(VeeValidateCommandConvention))]
 
-namespace Rocket.Surgery.Vue.Validation
+namespace Rocket.Surgery.Extensions.FluentValidation.Vue
 {
     class VeeValidateCommandConvention : ICommandLineConvention
     {
