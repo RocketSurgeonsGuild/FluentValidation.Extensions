@@ -12,12 +12,12 @@ using Newtonsoft.Json.Serialization;
 using NodaTime;
 using NodaTime.Serialization.JsonNet;
 using NodaTime.Testing;
-using Rocket.Surgery.Vue.Validation;
+using Rocket.Surgery.Extensions.FluentValidation.Vue;
 using Rocket.Surgery.Extensions.Testing;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Rocket.Surgery.Validation.Tests
+namespace Rocket.Surgery.Extensions.FluentValidation.Tests
 {
     public class VeeValidateCommandTests : AutoTestBase
     {
@@ -313,7 +313,7 @@ namespace Rocket.Surgery.Validation.Tests
 
             foreach (var (from, to) in new(IComparable from, IComparable to)[] { (1, 10), (1.0f, 2.0f), (1.0d, 2.0d), (1.0M, 100.0M) })
                 yield return new object[] {
-                    new ExclusiveBetweenValidator(from, to), 
+                    new ExclusiveBetweenValidator(from, to),
                     from.GetType(),
                     new [] { ("between_neq", JsonConvert.SerializeObject(new [] { from, to }, settings)) }
                 };

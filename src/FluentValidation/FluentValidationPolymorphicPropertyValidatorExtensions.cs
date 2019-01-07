@@ -1,4 +1,4 @@
-﻿using Rocket.Surgery.Core.Validation;
+﻿using Rocket.Surgery.Extensions.FluentValidation;
 
 // ReSharper disable once CheckNamespace
 namespace FluentValidation

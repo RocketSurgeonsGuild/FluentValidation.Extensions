@@ -2,12 +2,11 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Rocket.Surgery.Core.Validation;
+using Rocket.Surgery.Extensions.FluentValidation;
 using Rocket.Surgery.Conventions.Reflection;
 using Rocket.Surgery.Extensions.DependencyInjection;
 
-// ReSharper disable once CheckNamespace
-namespace Rocket.Surgery.Core
+namespace Rocket.Surgery.Extensions.FluentValidation
 {
     public static class ValidationServicesExtensions
     {

@@ -9,7 +9,7 @@ using FluentValidation.Internal;
 using FluentValidation.Results;
 using FluentValidation.Validators;
 
-namespace Rocket.Surgery.Core.Validation
+namespace Rocket.Surgery.Extensions.FluentValidation
 {
     public class PolymorphicPropertyValidator<T> : NoopPropertyValidator
     {
