@@ -10,8 +10,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation
 {
     public static class ValidationServicesExtensions
     {
-        public static T WithFluentValidation<T>(this T builder)
-            where T : IServiceConventionContext
+        public static IServiceConventionContext WithFluentValidation(this IServiceConventionContext builder)
         {
             if (builder.Services.All(z => z.ServiceType != typeof(IValidatorFactory)))
             {
