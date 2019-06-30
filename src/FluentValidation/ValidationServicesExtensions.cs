@@ -8,8 +8,16 @@ using Rocket.Surgery.Extensions.DependencyInjection;
 
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
+    /// <summary>
+    /// Class ValidationServicesExtensions.
+    /// </summary>
     public static class ValidationServicesExtensions
     {
+        /// <summary>
+        /// Withes the fluent validation.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <returns>IServiceConventionContext.</returns>
         public static IServiceConventionContext WithFluentValidation(this IServiceConventionContext builder)
         {
             if (builder.Services.All(z => z.ServiceType != typeof(IValidatorFactory)))

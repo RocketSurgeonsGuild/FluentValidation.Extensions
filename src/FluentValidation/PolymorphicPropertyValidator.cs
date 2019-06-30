@@ -11,16 +11,31 @@ using FluentValidation.Validators;
 
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
+    /// <summary>
+    /// Class PolymorphicPropertyValidator.
+    /// Implements the <see cref="FluentValidation.Validators.NoopPropertyValidator" />
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <seealso cref="FluentValidation.Validators.NoopPropertyValidator" />
     public class PolymorphicPropertyValidator<T> : NoopPropertyValidator
     {
         private readonly IValidatorFactory _validatorFactory;
         private readonly ConcurrentDictionary<Type, IValidator> _derivedValidators = new ConcurrentDictionary<Type, IValidator>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PolymorphicPropertyValidator{T}"/> class.
+        /// </summary>
+        /// <param name="validatorFactory">The validator factory.</param>
         internal PolymorphicPropertyValidator(IValidatorFactory validatorFactory)
         {
             _validatorFactory = validatorFactory;
         }
 
+        /// <summary>
+        /// Validates the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns>IEnumerable&lt;ValidationFailure&gt;.</returns>
         public override IEnumerable<ValidationFailure> Validate(PropertyValidatorContext context)
         {
             // bail out if the property is null
@@ -42,6 +57,12 @@ namespace Rocket.Surgery.Extensions.FluentValidation
             return validator.Validate(validationContext).Errors;
         }
 
+        /// <summary>
+        /// validate as an asynchronous operation.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="cancellation">The cancellation.</param>
+        /// <returns>Task&lt;IEnumerable&lt;ValidationFailure&gt;&gt;.</returns>
         public override async Task<IEnumerable<ValidationFailure>> ValidateAsync(PropertyValidatorContext context, CancellationToken cancellation)
         {
             // bail out if the property is null

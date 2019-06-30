@@ -23,18 +23,36 @@ using Rocket.Surgery.Extensions.CommandLine;
 
 namespace Rocket.Surgery.Extensions.FluentValidation.Vue
 {
+    /// <summary>
+    /// Class VeeValidateCommandConvention.
+    /// Implements the <see cref="Rocket.Surgery.Extensions.CommandLine.ICommandLineConvention" />
+    /// </summary>
+    /// <seealso cref="Rocket.Surgery.Extensions.CommandLine.ICommandLineConvention" />
     class VeeValidateCommandConvention : ICommandLineConvention
     {
+        /// <summary>
+        /// Registers the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public void Register(ICommandLineConventionContext context)
         {
             context.AddCommand<VueCommand>("vue");
         }
     }
 
+    /// <summary>
+    /// Class VueCommand.
+    /// </summary>
     [Command("vue", Description = "Commands related to using the vue framework"),
         Subcommand("vee-validate", typeof(VeeValidateCommand))]
     class VueCommand
     {
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         public int OnExecute(CommandLineApplication app, IConsole console)
         {
             console.WriteLine("You must specify at a subcommand.");
@@ -43,6 +61,9 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
         }
     }
 
+    /// <summary>
+    /// Class VeeValidateCommand.
+    /// </summary>
     [Command(Description = "Export vee validate definitions for all the models that have the IVeeValidate interface attached")]
     class VeeValidateCommand
     {
@@ -52,9 +73,20 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
         private readonly ILogger<VeeValidateCommand> _logger;
         private readonly JsonSerializerSettings _serializerSettings;
 
+        /// <summary>
+        /// Gets the output directory.
+        /// </summary>
+        /// <value>The output directory.</value>
         [Argument(0, Description = "The path where to write the validation definitions out to (as a typescript file)")]
         public string OutputDirectory { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VeeValidateCommand"/> class.
+        /// </summary>
+        /// <param name="assemblyCandidateFinder">The assembly candidate finder.</param>
+        /// <param name="validatorFactory">The validator factory.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="serializerSettings">The serializer settings.</param>
         public VeeValidateCommand(
             IAssemblyCandidateFinder assemblyCandidateFinder,
             IValidatorFactory validatorFactory,
@@ -67,6 +99,10 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
             _serializerSettings = serializerSettings;
         }
 
+        /// <summary>
+        /// on execute as an asynchronous operation.
+        /// </summary>
+        /// <returns>Task&lt;System.Int32&gt;.</returns>
         public async Task<int> OnExecuteAsync()
         {
             await Task.Yield();
@@ -121,6 +157,15 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
             return 0;
         }
 
+        /// <summary>
+        /// Processes the member.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="memberName">Name of the member.</param>
+        /// <param name="memberType">Type of the member.</param>
+        /// <param name="propertyValidators">The property validators.</param>
+        /// <returns>List&lt;System.ValueTuple&lt;System.String, System.String&gt;&gt;.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         internal List<(string key, string rules)> ProcessMember(Type type, string memberName, Type memberType, IEnumerable<IPropertyValidator> propertyValidators)
         {
             var rules = new List<(string key, string rules)>();
@@ -340,5 +385,8 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
         }
     }
 
+    /// <summary>
+    /// Interface IVeeValidate
+    /// </summary>
     public interface IVeeValidate { }
 }
