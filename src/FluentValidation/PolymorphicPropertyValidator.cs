@@ -12,7 +12,7 @@ using FluentValidation.Validators;
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
-    /// Class PolymorphicPropertyValidator.
+    ///  PolymorphicPropertyValidator.
     /// Implements the <see cref="FluentValidation.Validators.NoopPropertyValidator" />
     /// </summary>
     /// <typeparam name="T"></typeparam>

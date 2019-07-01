@@ -9,7 +9,7 @@ using Rocket.Surgery.Extensions.DependencyInjection;
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
-    /// Class ValidationServicesExtensions.
+    ///  ValidationServicesExtensions.
     /// </summary>
     public static class ValidationServicesExtensions
     {
