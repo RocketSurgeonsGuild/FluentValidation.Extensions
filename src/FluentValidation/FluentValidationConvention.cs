@@ -2,7 +2,7 @@
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.DependencyInjection;
 
-[assembly: Convention(typeof(ValidationConvention))]
+[assembly: Convention(typeof(FluentValidationConvention))]
 
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
@@ -12,7 +12,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation
     /// </summary>
     /// <seealso cref="Rocket.Surgery.Extensions.DependencyInjection.IServiceConvention" />
     /// <seealso cref="IServiceConvention" />
-    public class ValidationConvention : IServiceConvention
+    public class FluentValidationConvention : IServiceConvention
     {
         /// <summary>
         /// Registers the specified context.

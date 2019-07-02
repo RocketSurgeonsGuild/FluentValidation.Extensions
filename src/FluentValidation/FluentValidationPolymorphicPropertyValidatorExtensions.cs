@@ -4,7 +4,7 @@
 namespace FluentValidation
 {
     /// <summary>
-    /// Class FluentValidationPolymorphicPropertyValidatorExtensions.
+    ///  FluentValidationPolymorphicPropertyValidatorExtensions.
     /// </summary>
     public static class FluentValidationPolymorphicPropertyValidatorExtensions
     {

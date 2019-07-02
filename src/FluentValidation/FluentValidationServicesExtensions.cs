@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.FluentValidation;
 using Rocket.Surgery.Conventions.Reflection;
 using Rocket.Surgery.Extensions.DependencyInjection;
@@ -9,9 +10,9 @@ using Rocket.Surgery.Extensions.DependencyInjection;
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
-    /// Class ValidationServicesExtensions.
+    ///  FluentValidationServicesExtensions.
     /// </summary>
-    public static class ValidationServicesExtensions
+    public static class FluentValidationServicesExtensions
     {
         /// <summary>
         /// Withes the fluent validation.
@@ -37,6 +38,23 @@ namespace Rocket.Surgery.Extensions.FluentValidation
 
                 builder.Services.TryAddSingleton<IValidatorFactory, ValidatorFactory>();
             }
+            return builder;
+        }
+    }
+    /// <summary>
+    ///  FluentValidationHostBuilderExtensions.
+    /// </summary>
+    public static class FluentValidationHostBuilderExtensions
+    {
+
+        /// <summary>
+        /// Adds fluent validation.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <returns>IConventionHostBuilder.</returns>
+        public static IConventionHostBuilder WithFluentValidation(this IConventionHostBuilder builder)
+        {
+            builder.Scanner.PrependConvention<FluentValidationConvention>();
             return builder;
         }
     }

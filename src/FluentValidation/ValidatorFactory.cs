@@ -9,10 +9,10 @@ using FluentValidation.Validators;
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
-    /// Class ValidatorFactory.
-    /// Implements the <see cref="FluentValidation.ValidatorFactoryBase" />
+    ///  ValidatorFactory.
+    /// Implements the <see cref="ValidatorFactoryBase" />
     /// </summary>
-    /// <seealso cref="FluentValidation.ValidatorFactoryBase" />
+    /// <seealso cref="ValidatorFactoryBase" />
     class ValidatorFactory : ValidatorFactoryBase
     {
         private readonly IServiceProvider _context;

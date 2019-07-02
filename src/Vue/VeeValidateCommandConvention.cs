@@ -24,7 +24,7 @@ using Rocket.Surgery.Extensions.CommandLine;
 namespace Rocket.Surgery.Extensions.FluentValidation.Vue
 {
     /// <summary>
-    /// Class VeeValidateCommandConvention.
+    ///  VeeValidateCommandConvention.
     /// Implements the <see cref="Rocket.Surgery.Extensions.CommandLine.ICommandLineConvention" />
     /// </summary>
     /// <seealso cref="Rocket.Surgery.Extensions.CommandLine.ICommandLineConvention" />
@@ -41,7 +41,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
     }
 
     /// <summary>
-    /// Class VueCommand.
+    ///  VueCommand.
     /// </summary>
     [Command("vue", Description = "Commands related to using the vue framework"),
         Subcommand("vee-validate", typeof(VeeValidateCommand))]
@@ -62,7 +62,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
     }
 
     /// <summary>
-    /// Class VeeValidateCommand.
+    ///  VeeValidateCommand.
     /// </summary>
     [Command(Description = "Export vee validate definitions for all the models that have the IVeeValidate interface attached")]
     class VeeValidateCommand
@@ -386,7 +386,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
     }
 
     /// <summary>
-    /// Interface IVeeValidate
+    ///  IVeeValidate
     /// </summary>
     public interface IVeeValidate { }
 }
