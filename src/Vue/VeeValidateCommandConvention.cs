@@ -102,7 +102,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
         /// <summary>
         /// on execute as an asynchronous operation.
         /// </summary>
-        /// <returns>Task&lt;System.Int32&gt;.</returns>
+        /// <returns>Task{System.Int32}.</returns>
         public async Task<int> OnExecuteAsync()
         {
             await Task.Yield();
@@ -164,7 +164,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
         /// <param name="memberName">Name of the member.</param>
         /// <param name="memberType">Type of the member.</param>
         /// <param name="propertyValidators">The property validators.</param>
-        /// <returns>List&lt;System.ValueTuple&lt;System.String, System.String&gt;&gt;.</returns>
+        /// <returns>List{System.ValueTuple{System.String, System.String}}urns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         internal List<(string key, string rules)> ProcessMember(Type type, string memberName, Type memberType, IEnumerable<IPropertyValidator> propertyValidators)
         {

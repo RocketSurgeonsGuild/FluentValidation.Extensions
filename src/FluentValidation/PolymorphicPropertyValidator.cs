@@ -35,7 +35,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation
         /// Validates the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <returns>IEnumerable&lt;ValidationFailure&gt;.</returns>
+        /// <returns>IEnumerable{ValidationFailure}.</returns>
         public override IEnumerable<ValidationFailure> Validate(PropertyValidatorContext context)
         {
             // bail out if the property is null
@@ -62,7 +62,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="cancellation">The cancellation.</param>
-        /// <returns>Task&lt;IEnumerable&lt;ValidationFailure&gt;&gt;.</returns>
+        /// <returns>Task{IEnumerable{ValidationFailure}}.</returns>
         public override async Task<IEnumerable<ValidationFailure>> ValidateAsync(PropertyValidatorContext context, CancellationToken cancellation)
         {
             // bail out if the property is null

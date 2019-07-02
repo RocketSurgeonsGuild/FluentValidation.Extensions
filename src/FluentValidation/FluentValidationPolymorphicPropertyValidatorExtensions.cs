@@ -15,7 +15,7 @@ namespace FluentValidation
         /// <typeparam name="TProperty">The type of the t property.</typeparam>
         /// <param name="builder">The builder.</param>
         /// <param name="validatorFactory">The validator factory.</param>
-        /// <returns>IRuleBuilderOptions&lt;T, TProperty&gt;.</returns>
+        /// <returns>IRuleBuilderOptions{T, TProperty}.</returns>
         public static IRuleBuilderOptions<T, TProperty> UsePolymorphicValidator<T, TProperty>(
             this IRuleBuilder<T, TProperty> builder,
             IValidatorFactory validatorFactory)
