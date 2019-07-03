@@ -13,19 +13,19 @@
     <PackageReference Update="NodaTime" Version="2.4.6" />
     <PackageReference Update="NodaTime.Testing" Version="2.4.6" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions" Version="6.2.1" />
-    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="6.2.1" />
+    <PackageReference Update="Rocket.Surgery.Conventions" Version="6.2.2" />
+    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="6.2.2" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="1.0.1" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="5.0.2" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="5.0.2" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="6.0.2" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="6.0.2" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="5.0.4" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="5.0.4" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="6.0.3" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="6.0.3" />
     <PackageReference Update="Scrutor" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="Rocket.Surgery.Extensions.Testing" Version="1.1.8" />
     <PackageReference Update="Autofac.Extras.FakeItEasy" Version="5.0.1" />
-    <PackageReference Update="Bogus" Version="27.0.1" />
+    <PackageReference Update="Bogus" Version="28.0.1" />
     <PackageReference Update="coverlet.collector" Version="1.0.1" />
     <PackageReference Update="coverlet.msbuild" Version="2.6.3" />
     <PackageReference Update="FakeItEasy" Version="5.1.1" />
