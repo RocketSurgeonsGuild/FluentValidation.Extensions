@@ -24,8 +24,8 @@
     <PackageReference Update="Rocket.Surgery.Extensions" Version="1.0.3" />
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="5.0.4" />
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="5.0.4" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="6.0.3" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="6.0.3" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="6.0.4" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="6.0.4" />
     <PackageReference Update="Scrutor" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup>
