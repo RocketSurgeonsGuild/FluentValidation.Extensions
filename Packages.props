@@ -19,13 +19,13 @@
     <PackageReference Update="NodaTime" Version="2.4.6" />
     <PackageReference Update="NodaTime.Testing" Version="2.4.6" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions" Version="6.3.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="6.3.0" />
+    <PackageReference Update="Rocket.Surgery.Conventions" Version="6.3.1" />
+    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="6.3.1" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="1.0.3" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="5.0.5" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="5.0.5" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="6.0.4" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="6.0.4" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="5.0.6" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="5.0.6" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="6.0.5" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="6.0.5" />
     <PackageReference Update="Scrutor" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup>
