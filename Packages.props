@@ -10,8 +10,8 @@
   <ItemGroup>
     <PackageReference Update="Nuke.Common" Version="0.21.2" />
     <PackageReference Update="Rocket.Surgery.Nuke.DotNetCore" Version="0.3.5" />
-    <PackageReference Update="GitVersion.CommandLine.DotNetCore" Version="5.0.1-beta1.14" />
-    <PackageReference Update="ReportGenerator" Version="4.2.12" />
+    <PackageReference Update="GitVersion.CommandLine.DotNetCore" Version="5.0.1" />
+    <PackageReference Update="ReportGenerator" Version="4.2.15" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="FluentValidation" Version="8.4.0" />
@@ -20,13 +20,13 @@
     <PackageReference Update="NodaTime" Version="2.4.6" />
     <PackageReference Update="NodaTime.Testing" Version="2.4.6" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions" Version="6.3.1" />
-    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="6.3.1" />
+    <PackageReference Update="Rocket.Surgery.Conventions" Version="7.0.1" />
+    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="7.0.1" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="1.0.3" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="5.0.6" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="5.0.6" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="6.0.5" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="6.0.5" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="7.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="7.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="7.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="7.0.1" />
     <PackageReference Update="Scrutor" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup>
