@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,10 @@ namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
     ///  PolymorphicPropertyValidator.
-    /// Implements the <see cref="FluentValidation.Validators.NoopPropertyValidator" />
+    /// Implements the <see cref="NoopPropertyValidator" />
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <seealso cref="FluentValidation.Validators.NoopPropertyValidator" />
+    /// <seealso cref="NoopPropertyValidator" />
     public class PolymorphicPropertyValidator<T> : NoopPropertyValidator
     {
         private readonly IValidatorFactory _validatorFactory;

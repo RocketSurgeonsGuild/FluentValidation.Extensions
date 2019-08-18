@@ -39,7 +39,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation
                 return validator;
             }
 
-            return null;
+            return null!;
         }
     }
 }

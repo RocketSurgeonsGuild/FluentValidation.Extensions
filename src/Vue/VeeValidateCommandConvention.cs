@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,7 +44,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
     ///  VueCommand.
     /// </summary>
     [Command("vue", Description = "Commands related to using the vue framework"),
-        Subcommand("vee-validate", typeof(VeeValidateCommand))]
+        Subcommand(typeof(VeeValidateCommand))]
     class VueCommand
     {
         /// <summary>
@@ -78,7 +78,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
         /// </summary>
         /// <value>The output directory.</value>
         [Argument(0, Description = "The path where to write the validation definitions out to (as a typescript file)")]
-        public string OutputDirectory { get; }
+        public string OutputDirectory { get; } = string.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VeeValidateCommand"/> class.
@@ -128,7 +128,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
                 {
                     sb.AppendLine($"        {member.Key.Camelize()}: {{");
 
-                    Type memberType = null;
+                    Type? memberType = null;
 
                     var propertyInfo = type.GetProperty(member.Key, CommonBindingFlags);
                     if (propertyInfo != null) memberType = propertyInfo.PropertyType;
@@ -136,7 +136,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
                     var fieldInfo = type.GetField(member.Key, CommonBindingFlags);
                     if (fieldInfo != null) memberType = fieldInfo.FieldType;
 
-                    var rules = ProcessMember(type, member.Key.Camelize(), memberType, member)
+                    var rules = ProcessMember(type, member.Key.Camelize(), memberType!, member)
                         .GroupBy(x => x.key, x => x.rules)
                         .ToDictionary(x => x.Key, x => x.First());
 
@@ -164,11 +164,11 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
         /// <param name="memberName">Name of the member.</param>
         /// <param name="memberType">Type of the member.</param>
         /// <param name="propertyValidators">The property validators.</param>
-        /// <returns>List{System.ValueTuple{System.String, System.String}}urns>
+        /// <returns>List{ValueTuple{String, String}}</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        internal List<(string key, string rules)> ProcessMember(Type type, string memberName, Type memberType, IEnumerable<IPropertyValidator> propertyValidators)
+        internal List<(string key, string? rules)> ProcessMember(Type type, string memberName, Type memberType, IEnumerable<IPropertyValidator> propertyValidators)
         {
-            var rules = new List<(string key, string rules)>();
+            var rules = new List<(string key, string? rules)>();
 
             bool ValidateLengthValidator(LengthValidator lv)
             {
@@ -202,7 +202,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
                         rules.Add(("email", "true"));
                         break;
                     case EnumValidator enumValidator:
-                        var enumType = (Type)enumValidator.GetType().GetField("_enumType", CommonBindingFlags).GetValue(enumValidator);
+                        var enumType = (Type)enumValidator.GetType().GetField("_enumType", CommonBindingFlags)?.GetValue(enumValidator)!;
                         var values = Enum.GetValues(enumType).Cast<object>();
 
                         rules.Add(("in", $"{JsonConvert.SerializeObject(values.ToArray(), _serializerSettings)}"));
@@ -223,32 +223,16 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
                                 _logger.LogWarning("{Validator} {Type}:{MemberName} is not supported.", comparisonValidator.GetType().Name, type.FullName, memberName);
                                 continue;
                             }
-
-                            string key;
-                            switch (comparisonValidator.Comparison)
+                            var key = comparisonValidator.Comparison switch
                             {
-                                case Comparison.Equal:
-                                    key = "is";
-                                    break;
-                                case Comparison.NotEqual:
-                                    key = "not_is"; // custom validator
-                                    break;
-                                case Comparison.LessThan:
-                                    key = isNumericType ? "min_neq_value" /* custom validator */ : "before";
-                                    break;
-                                case Comparison.LessThanOrEqual:
-                                    key = isNumericType ? "min_value" : "before";
-                                    break;
-                                case Comparison.GreaterThan:
-                                    key = isNumericType ? "max_neq_value" /* custom validator */ : "after";
-                                    break;
-                                case Comparison.GreaterThanOrEqual:
-                                    key = isNumericType ? "max_value" : "after";
-                                    break;
-                                default:
-                                    throw new ArgumentOutOfRangeException();
-                            }
-
+                                Comparison.Equal => "is",
+                                Comparison.NotEqual => "not_is", // custom validator
+                                Comparison.LessThan => isNumericType ? "min_neq_value" /* custom validator */ : "before",
+                                Comparison.LessThanOrEqual => isNumericType ? "min_value" : "before",
+                                Comparison.GreaterThan => isNumericType ? "max_neq_value" /* custom validator */ : "after",
+                                Comparison.GreaterThanOrEqual => isNumericType ? "max_value" : "after",
+                                _ => throw new ArgumentOutOfRangeException(),
+                            };
                             string value;
                             if (comparisonValidator.MemberToCompare != null)
                             {
@@ -349,7 +333,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
             return rules;
         }
 
-        private static HashSet<Type> NumericTypes = new HashSet<Type>(new[]
+        private static readonly HashSet<Type> NumericTypes = new HashSet<Type>(new[]
         {
             typeof(short),
             typeof(int),
@@ -367,7 +351,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.Vue
             return NumericTypes.Contains(type);
         }
 
-        private static HashSet<Type> DateTypes = new HashSet<Type>(new[]
+        private static readonly HashSet<Type> DateTypes = new HashSet<Type>(new[]
         {
             typeof(DateTime),
             typeof(DateTimeOffset),
