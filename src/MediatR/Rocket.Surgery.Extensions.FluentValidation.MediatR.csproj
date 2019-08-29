@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.1;netcoreapp3.0;netstandard2.0;netcoreapp2.1</TargetFrameworks>
+        <AssemblyTitle>Rocket.Surgery FluentValidation with MediatR for .NET Core</AssemblyTitle>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="Rocket.Surgery.Extensions.MediatR" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\FluentValidation\Rocket.Surgery.Extensions.FluentValidation.csproj" />
+    </ItemGroup>
+</Project>

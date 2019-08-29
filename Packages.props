@@ -17,6 +17,7 @@
     <PackageReference Update="FluentValidation" Version="8.4.0" />
     <PackageReference Update="FluentValidation.AspNetCore" Version="8.4.0" />
     <PackageReference Update="Humanizer.Core" Version="2.6.2" />
+    <PackageReference Update="MediatR" Version="7.0.0" />
     <PackageReference Update="NodaTime" Version="2.4.6" />
     <PackageReference Update="NodaTime.Testing" Version="2.4.6" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
@@ -27,6 +28,7 @@
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="7.0.5" />
     <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="7.0.5" />
     <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="7.0.5" />
+    <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="4.0.7" />
     <PackageReference Update="Scrutor" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup>
