@@ -25,6 +25,10 @@
     <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="4.0.10" />
     <PackageReference Update="Scrutor" Version="3.1.0" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(TargetFramework)'!='netcoreapp2.1'">
+    <PackageReference Update="FluentValidation" Version="8.5.0-preview5" />
+    <PackageReference Update="FluentValidation.AspNetCore" Version="8.5.0-preview5" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Update="Rocket.Surgery.Extensions.Testing" Version="1.2.3" />
     <PackageReference Update="Autofac.Extras.FakeItEasy" Version="5.0.1" />
