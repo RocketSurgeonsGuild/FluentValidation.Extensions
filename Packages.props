@@ -15,7 +15,7 @@
     <PackageReference Update="NodaTime" Version="2.4.7" />
     <PackageReference Update="NodaTime.Testing" Version="2.4.7" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions" Version="7.1.0" />
+    <PackageReference Update="Rocket.Surgery.Conventions" Version="7.2.0" />
     <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="7.1.0" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="1.0.5" />
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="7.1.0" />
