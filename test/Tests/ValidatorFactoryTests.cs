@@ -22,7 +22,7 @@ using Xunit.Abstractions;
 
 namespace Rocket.Surgery.Extensions.FluentValidation.Tests
 {
-    public class ValidatorFactoryTests : AutoTestBase
+    public class ValidatorFactoryTests : AutoFakeTest
     {
         public ValidatorFactoryTests(ITestOutputHelper outputHelper) : base(outputHelper, LogLevel.Information) { }
 

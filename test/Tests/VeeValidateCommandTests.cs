@@ -19,7 +19,7 @@ using Xunit.Abstractions;
 
 namespace Rocket.Surgery.Extensions.FluentValidation.Tests
 {
-    public class VeeValidateCommandTests : AutoTestBase
+    public class VeeValidateCommandTests : AutoFakeTest
     {
         class T
         {
