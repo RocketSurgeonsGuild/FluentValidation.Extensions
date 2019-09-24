@@ -8,21 +8,21 @@
     <GlobalPackageReference Include="Roslynator.Analyzers" Version="2.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="FluentValidation" Version="8.4.0" />
-    <PackageReference Update="FluentValidation.AspNetCore" Version="8.4.0" />
+    <PackageReference Update="FluentValidation" Version="8.5.0-preview5" />
+    <PackageReference Update="FluentValidation.AspNetCore" Version="8.5.0-preview5" />
     <PackageReference Update="Humanizer.Core" Version="2.7.2" />
     <PackageReference Update="MediatR" Version="7.0.0" />
     <PackageReference Update="NodaTime" Version="2.4.7" />
     <PackageReference Update="NodaTime.Testing" Version="2.4.7" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions" Version="8.0.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="8.0.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions" Version="1.0.5" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="8.0.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="8.0.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="6.0.0" />
+    <PackageReference Update="Rocket.Surgery.Conventions" Version="8.0.1" />
+    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="8.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions" Version="1.0.6" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="8.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="8.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="6.0.1" />
     <PackageReference Update="Scrutor" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(TargetFramework)'!='netcoreapp2.1'">
@@ -32,9 +32,9 @@
   <ItemGroup>
     <PackageReference Update="Rocket.Surgery.Extensions.Testing.FakeItEasy" Version="2.0.0" />
     <PackageReference Update="Autofac.Extras.FakeItEasy" Version="5.0.1" />
-    <PackageReference Update="Bogus" Version="28.2.1" />
-    <PackageReference Update="coverlet.collector" Version="1.0.1" />
-    <PackageReference Update="coverlet.msbuild" Version="2.6.3" />
+    <PackageReference Update="Bogus" Version="28.3.1" />
+    <PackageReference Update="coverlet.collector" Version="1.1.0" />
+    <PackageReference Update="coverlet.msbuild" Version="2.7.0" />
     <PackageReference Update="FakeItEasy" Version="5.2.0" />
     <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="5.2.0" />
     <PackageReference Update="FluentAssertions" Version="5.9.0" />
