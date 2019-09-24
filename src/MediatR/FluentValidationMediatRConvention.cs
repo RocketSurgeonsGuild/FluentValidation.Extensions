@@ -1,12 +1,12 @@
-﻿using Rocket.Surgery.Extensions.FluentValidation;
+﻿using System.Linq;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Rocket.Surgery.Extensions.FluentValidation;
+using Rocket.Surgery.Extensions.FluentValidation.MediatR;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Conventions.Reflection;
 using Rocket.Surgery.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Linq;
-using Rocket.Surgery.Extensions.FluentValidation.MediatR;
-using MediatR;
 
 [assembly: Convention(typeof(FluentValidationMediatRConvention))]
 
@@ -26,7 +26,9 @@ namespace Rocket.Surgery.Extensions.FluentValidation.MediatR
         /// <param name="context">The context.</param>
         public void Register(IServiceConventionContext context)
         {
-            context.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationMediatRPipelineBehavior<,>));
+            var serviceConfig = context.Get<MediatRServiceConfiguration>() ?? new MediatRServiceConfiguration();
+            context.Set(serviceConfig);
+            context.Services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(FluentValidationMediatRPipelineBehavior<,>), serviceConfig.Lifetime));
         }
     }
 }
