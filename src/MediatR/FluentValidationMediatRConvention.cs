@@ -26,8 +26,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.MediatR
         /// <param name="context">The context.</param>
         public void Register(IServiceConventionContext context)
         {
-            var serviceConfig = context.Get<MediatRServiceConfiguration>() ?? new MediatRServiceConfiguration();
-            context.Set(serviceConfig);
+            var serviceConfig = context.GetOrAdd(() => new MediatRServiceConfiguration());
             context.Services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(FluentValidationMediatRPipelineBehavior<,>), serviceConfig.Lifetime));
         }
     }
