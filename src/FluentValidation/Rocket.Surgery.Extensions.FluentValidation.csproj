@@ -8,6 +8,5 @@
         <PackageReference Include="Humanizer.Core" />
         <PackageReference Include="NodaTime" />
         <PackageReference Include="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" />
-        <PackageReference Include="Scrutor" />
     </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.0;netcoreapp2.1</TargetFrameworks>
+        <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\src\AspNetCore\Rocket.Surgery.Extensions.FluentValidation.AspNetCore.csproj" />
+        <ProjectReference Include="..\..\src\AspNetCore\Rocket.Surgery.AspNetCore.FluentValidation.csproj" />
         <ProjectReference Include="..\..\src\FluentValidation\Rocket.Surgery.Extensions.FluentValidation.csproj" />
         <ProjectReference Include="..\..\src\Vue\Rocket.Surgery.Extensions.FluentValidation.Vue.csproj" />
         <PackageReference Include="NodaTime.Serialization.JsonNet" />
