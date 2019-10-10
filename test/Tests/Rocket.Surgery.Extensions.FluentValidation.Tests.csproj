@@ -5,7 +5,6 @@
     <ItemGroup>
         <ProjectReference Include="..\..\src\AspNetCore\Rocket.Surgery.AspNetCore.FluentValidation.csproj" />
         <ProjectReference Include="..\..\src\FluentValidation\Rocket.Surgery.Extensions.FluentValidation.csproj" />
-        <ProjectReference Include="..\..\src\Vue\Rocket.Surgery.Extensions.FluentValidation.Vue.csproj" />
         <PackageReference Include="NodaTime.Serialization.JsonNet" />
         <PackageReference Include="NodaTime.Testing" />
         <PackageReference Include="Rocket.Surgery.Extensions" />

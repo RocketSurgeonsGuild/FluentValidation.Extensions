@@ -1,45 +1,36 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Rocket.Surgery.AspNetCore.FluentValidation
 {
     /// <summary>
     /// A RFC 7807 compliant <see cref="JsonConverter"/> for <see cref="FluentValidationProblemDetails"/>.
     /// </summary>
-    public sealed class ValidationProblemDetailsConverter : JsonConverter
+    public sealed class ValidationProblemDetailsConverter : JsonConverter<FluentValidationProblemDetails>
     {
         /// <inheritdoc />
-        public override bool CanConvert(Type objectType) => objectType == typeof(FluentValidationProblemDetails);
-
-        /// <inheritdoc />
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override FluentValidationProblemDetails Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            var annotatedProblemDetails = serializer.Deserialize<AnnotatedProblemDetails>(reader);
-            if (annotatedProblemDetails == null)
-            {
-                return null;
-            }
+            var annotatedProblemDetails = JsonSerializer.Deserialize<AnnotatedProblemDetails>(ref reader, options);
 
-            var problemDetails = (FluentValidationProblemDetails)existingValue ?? new FluentValidationProblemDetails();
-            annotatedProblemDetails.CopyTo(problemDetails);
-
+            var problemDetails = new FluentValidationProblemDetails();
+            annotatedProblemDetails?.CopyTo(problemDetails);
             return problemDetails;
         }
 
         /// <inheritdoc />
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void Write(Utf8JsonWriter writer, FluentValidationProblemDetails value, JsonSerializerOptions options)
         {
             if (value == null)
             {
-                writer.WriteNull();
+                writer.WriteNullValue();
                 return;
             }
 
-            var problemDetails = (FluentValidationProblemDetails)value;
-            var annotatedProblemDetails = new AnnotatedProblemDetails(problemDetails);
-
-            serializer.Serialize(writer, annotatedProblemDetails);
+            var annotatedProblemDetails = new AnnotatedProblemDetails(value);
+            JsonSerializer.Serialize(writer, annotatedProblemDetails, options);
         }
 
         internal class AnnotatedProblemDetails
@@ -68,29 +59,29 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 }
             }
 
-            [JsonProperty(PropertyName = "type", NullValueHandling = NullValueHandling.Ignore)]
+            [JsonPropertyName("type")]
             public string Type { get; set; }
 
-            [JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
+            [JsonPropertyName("title")]
             public string Title { get; set; }
 
-            [JsonProperty(PropertyName = "status", NullValueHandling = NullValueHandling.Ignore)]
+            [JsonPropertyName("status")]
             public int? Status { get; set; }
 
-            [JsonProperty(PropertyName = "detail", NullValueHandling = NullValueHandling.Ignore)]
+            [JsonPropertyName("detail")]
             public string Detail { get; set; }
 
-            [JsonProperty(PropertyName = "instance", NullValueHandling = NullValueHandling.Ignore)]
+            [JsonPropertyName("instance")]
             public string Instance { get; set; }
 
             [JsonExtensionData]
             public IDictionary<string, object> Extensions { get; } = new Dictionary<string, object>(StringComparer.Ordinal);
 
-            [JsonProperty(PropertyName = "errors")]
+            [JsonPropertyName("errors")]
             public IDictionary<string, FluentValidationProblemDetail[]> Errors { get; } =
                 new Dictionary<string, FluentValidationProblemDetail[]>(StringComparer.Ordinal);
 
-            [JsonProperty(PropertyName = "rules")] public string[] Rules { get; internal set; } = Array.Empty<string>();
+            [JsonPropertyName("rules")] public string[] Rules { get; internal set; } = Array.Empty<string>();
 
             public void CopyTo(FluentValidationProblemDetails problemDetails)
             {
