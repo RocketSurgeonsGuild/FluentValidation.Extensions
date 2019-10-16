@@ -11,7 +11,7 @@ namespace Rocket.Surgery.AspNetCore.MediatR
     /// <summary>
     /// Default controller that integrates with <see cref="IMediator" />
     /// </summary>
-    [PublicAPI, ApiConventionType(typeof(MediatorApiConventions))]
+    [PublicAPI, ApiController, ApiConventionType(typeof(MediatorApiConventions))]
     public abstract class MediatorApiController : ControllerBase
     {
         private readonly IMediator _mediator;
