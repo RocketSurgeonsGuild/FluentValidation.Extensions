@@ -42,5 +42,15 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// <summary>Gets or sets the error code.</summary>
         [JsonPropertyName("errorCode")]
         public string ErrorCode { get; set; }
+
+        internal class Validator : AbstractValidator<FluentValidationProblemDetail>
+        {
+            public Validator()
+            {
+                RuleFor(x => x.PropertyName).NotNull();
+                RuleFor(x => x.ErrorCode).NotNull();
+                RuleFor(x => x.ErrorMessage).NotNull();
+            }
+        }
     }
 }

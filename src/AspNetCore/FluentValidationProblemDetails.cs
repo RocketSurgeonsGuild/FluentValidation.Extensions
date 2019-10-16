@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using FluentValidation;
 using FluentValidation.Results;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
@@ -51,5 +52,33 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// The rules run with the validation
         /// </summary>
         public string[] Rules { get; set; } = Array.Empty<string>();
+
+        internal class ProblemDetailsValidator : AbstractValidator<ProblemDetails>
+        {
+            public ProblemDetailsValidator()
+            {
+                RuleFor(x => x.Type).NotNull();
+                RuleFor(x => x.Title).NotNull();
+            }
+        }
+
+        internal class ValidationProblemDetailsValidator : AbstractValidator<ValidationProblemDetails>
+        {
+            public ValidationProblemDetailsValidator()
+            {
+                Include(new ProblemDetailsValidator());
+                RuleFor(x => x.Errors).NotNull();
+            }
+        }
+
+        internal class Validator : AbstractValidator<FluentValidationProblemDetails>
+        {
+            public Validator()
+            {
+                Include(new ProblemDetailsValidator());
+                RuleFor(x => x.Rules).NotNull();
+                RuleFor(x => x.Errors).NotNull();
+            }
+        }
     }
 }

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
+        <AssemblyTitle>Rocket.Surgery Fluent Validation for ASP.NET Core when using Newtonsoft.Json</AssemblyTitle>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../AspNetCore/Rocket.Surgery.AspNetCore.FluentValidation.csproj" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    </ItemGroup>
+</Project>

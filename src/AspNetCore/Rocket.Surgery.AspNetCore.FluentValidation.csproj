@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
-        <AssemblyTitle>Rocket.Surgery Validation for .NET Core</AssemblyTitle>
+        <AssemblyTitle>Rocket.Surgery Fluent Validation for ASP.NET Core</AssemblyTitle>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
