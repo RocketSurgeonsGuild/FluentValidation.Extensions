@@ -23,7 +23,7 @@
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="9.0.6" />
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="9.0.6" />
     <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="9.0.6" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
     <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="7.0.1" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(TargetFramework)'!='netcoreapp2.1'">
