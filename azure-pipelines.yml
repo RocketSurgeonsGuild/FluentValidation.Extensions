@@ -43,7 +43,7 @@ variables:
   - name: DOTNET_SKIP_FIRST_TIME_EXPERIENCE
     value: "true"
   - name: CodeCovToken
-    value: 'c93f6719-da50-4d00-ba2b-b73fd95239e0'
+    value: '132baf72-4c2f-4ae7-a571-117ca96b36de'
   - group: rsg-bot
 
 jobs:
