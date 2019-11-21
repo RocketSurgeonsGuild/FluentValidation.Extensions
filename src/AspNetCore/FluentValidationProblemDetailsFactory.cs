@@ -61,7 +61,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 throw new ArgumentNullException(nameof(modelStateDictionary));
             }
 
-            statusCode ??= 400;
+            statusCode ??= 422;
 
             ValidationProblemDetails? problemDetails = null;
 
