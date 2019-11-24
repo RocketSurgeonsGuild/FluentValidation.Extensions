@@ -1,30 +1,22 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using FluentValidation;
-using FluentValidation.Results;
-using FluentValidation.Validators;
 
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
-    ///  ValidatorFactory.
+    /// ValidatorFactory.
     /// Implements the <see cref="ValidatorFactoryBase" />
     /// </summary>
     /// <seealso cref="ValidatorFactoryBase" />
-    class ValidatorFactory : ValidatorFactoryBase
+    internal class ValidatorFactory : ValidatorFactoryBase
     {
         private readonly IServiceProvider _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ValidatorFactory"/> class.
+        /// Initializes a new instance of the <see cref="ValidatorFactory" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public ValidatorFactory(IServiceProvider context)
-        {
-            _context = context;
-        }
+        public ValidatorFactory(IServiceProvider context) => _context = context;
 
         /// <summary>
         /// Creates the instance.

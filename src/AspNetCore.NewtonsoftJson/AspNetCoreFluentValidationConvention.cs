@@ -1,10 +1,6 @@
 using System;
-using FluentValidation.AspNetCore;
 using JetBrains.Annotations;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Rocket.Surgery.AspNetCore.FluentValidation;
 using Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.DependencyInjection;
@@ -33,8 +29,12 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
             }
 
             context.Services
-                .AddMvcCore()
-                .AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new ValidationProblemDetailsNewtonsoftJsonConverter()));
+               .AddMvcCore()
+               .AddNewtonsoftJson(
+                    options => options.SerializerSettings.Converters.Add(
+                        new ValidationProblemDetailsNewtonsoftJsonConverter()
+                    )
+                );
         }
     }
 }

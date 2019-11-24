@@ -13,7 +13,7 @@ using JetBrains.Annotations;
 namespace Rocket.Surgery.Extensions.FluentValidation
 {
     /// <summary>
-    ///  PolymorphicPropertyValidator.
+    /// PolymorphicPropertyValidator.
     /// Implements the <see cref="NoopPropertyValidator" />
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -21,13 +21,16 @@ namespace Rocket.Surgery.Extensions.FluentValidation
     public class PolymorphicPropertyValidator<T> : NoopPropertyValidator
     {
         private readonly IValidatorFactory _validatorFactory;
-        private readonly ConcurrentDictionary<Type, IValidator> _derivedValidators = new ConcurrentDictionary<Type, IValidator>();
+
+        private readonly ConcurrentDictionary<Type, IValidator> _derivedValidators =
+            new ConcurrentDictionary<Type, IValidator>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolymorphicPropertyValidator{T}"/> class.
+        /// Initializes a new instance of the <see cref="PolymorphicPropertyValidator{T}" /> class.
         /// </summary>
         /// <param name="validatorFactory">The validator factory.</param>
-        internal PolymorphicPropertyValidator(IValidatorFactory validatorFactory) => _validatorFactory = validatorFactory;
+        internal PolymorphicPropertyValidator(IValidatorFactory validatorFactory)
+            => _validatorFactory = validatorFactory;
 
         /// <summary>
         /// Validates the specified context.
@@ -42,8 +45,15 @@ namespace Rocket.Surgery.Extensions.FluentValidation
             }
 
             // bail out if the property is null
-            if (context.PropertyValue == null) return Enumerable.Empty<ValidationFailure>();
-            if (!(context.PropertyValue is T value)) return Enumerable.Empty<ValidationFailure>();
+            if (context.PropertyValue == null)
+            {
+                return Enumerable.Empty<ValidationFailure>();
+            }
+
+            if (!( context.PropertyValue is T value ))
+            {
+                return Enumerable.Empty<ValidationFailure>();
+            }
 
             if (!_derivedValidators.TryGetValue(value.GetType(), out var validator))
             {
@@ -55,7 +65,11 @@ namespace Rocket.Surgery.Extensions.FluentValidation
                 return validator.Validate(context.ParentContext.CloneForChildValidator(value)).Errors;
             }
 
-            var validationContext = new ValidationContext<T>(value, PropertyChain.FromExpression(context.Rule.Expression), context.ParentContext.Selector);
+            var validationContext = new ValidationContext<T>(
+                value,
+                PropertyChain.FromExpression(context.Rule.Expression),
+                context.ParentContext.Selector
+            );
 
             return validator.Validate(validationContext).Errors;
         }
@@ -66,7 +80,10 @@ namespace Rocket.Surgery.Extensions.FluentValidation
         /// <param name="context">The context.</param>
         /// <param name="cancellation">The cancellation.</param>
         /// <returns>Task{IEnumerable{ValidationFailure}}.</returns>
-        public override async Task<IEnumerable<ValidationFailure>> ValidateAsync([NotNull] PropertyValidatorContext context, CancellationToken cancellation)
+        public override async Task<IEnumerable<ValidationFailure>> ValidateAsync(
+            [NotNull] PropertyValidatorContext context,
+            CancellationToken cancellation
+        )
         {
             if (context == null)
             {
@@ -74,8 +91,15 @@ namespace Rocket.Surgery.Extensions.FluentValidation
             }
 
             // bail out if the property is null
-            if (context.PropertyValue == null) return Enumerable.Empty<ValidationFailure>();
-            if (!(context.PropertyValue is T value)) return Enumerable.Empty<ValidationFailure>();
+            if (context.PropertyValue == null)
+            {
+                return Enumerable.Empty<ValidationFailure>();
+            }
+
+            if (!( context.PropertyValue is T value ))
+            {
+                return Enumerable.Empty<ValidationFailure>();
+            }
 
             if (!_derivedValidators.TryGetValue(value.GetType(), out var validator))
             {
@@ -84,15 +108,19 @@ namespace Rocket.Surgery.Extensions.FluentValidation
 
             if (context.ParentContext.IsChildCollectionContext)
             {
-                return (await validator.ValidateAsync(
+                return ( await validator.ValidateAsync(
                     context.ParentContext.CloneForChildValidator(value),
                     cancellation
                 ).ConfigureAwait(false) ).Errors;
             }
 
-            var validationContext = new ValidationContext<T>(value, PropertyChain.FromExpression(context.Rule.Expression), context.ParentContext.Selector);
+            var validationContext = new ValidationContext<T>(
+                value,
+                PropertyChain.FromExpression(context.Rule.Expression),
+                context.ParentContext.Selector
+            );
 
-            return (await validator.ValidateAsync(validationContext, cancellation).ConfigureAwait(false) ).Errors;
+            return ( await validator.ValidateAsync(validationContext, cancellation).ConfigureAwait(false) ).Errors;
         }
     }
 }

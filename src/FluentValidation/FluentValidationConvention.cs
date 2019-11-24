@@ -1,13 +1,13 @@
 using System;
-using Rocket.Surgery.Extensions.FluentValidation;
+using System.Linq;
+using FluentValidation;
+using JetBrains.Annotations;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Conventions.Reflection;
 using Rocket.Surgery.Extensions.DependencyInjection;
-using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Linq;
-using JetBrains.Annotations;
+using Rocket.Surgery.Extensions.FluentValidation;
 
 [assembly: Convention(typeof(FluentValidationConvention))]
 
@@ -34,10 +34,10 @@ namespace Rocket.Surgery.Extensions.FluentValidation
 
             foreach (var item in new AssemblyScanner(
                 context
-                    .AssemblyCandidateFinder
-                    .GetCandidateAssemblies(nameof(FluentValidation))
-                    .SelectMany(z => z.DefinedTypes)
-                    .Select(x => x.AsType())
+                   .AssemblyCandidateFinder
+                   .GetCandidateAssemblies(nameof(FluentValidation))
+                   .SelectMany(z => z.DefinedTypes)
+                   .Select(x => x.AsType())
             ))
             {
                 context.Services.TryAddEnumerable(

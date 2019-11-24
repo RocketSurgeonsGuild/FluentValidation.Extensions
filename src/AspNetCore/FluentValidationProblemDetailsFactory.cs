@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using FluentValidation;
-using FluentValidation.Resources;
 using FluentValidation.Results;
-using FluentValidation.Validators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -19,7 +14,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
     {
         private readonly ApiBehaviorOptions _apiBehaviorOptions;
 
-        public FluentValidationProblemDetailsFactory(IOptions<ApiBehaviorOptions> apiBehavior) => _apiBehaviorOptions = apiBehavior?.Value ?? throw new ArgumentNullException(nameof(apiBehavior));
+        public FluentValidationProblemDetailsFactory(IOptions<ApiBehaviorOptions> apiBehavior) => _apiBehaviorOptions =
+            apiBehavior?.Value ?? throw new ArgumentNullException(nameof(apiBehavior));
 
         /// <inheritdoc />
         public override ProblemDetails CreateProblemDetails(
@@ -28,7 +24,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             string? title = null,
             string? type = null,
             string? detail = null,
-            string? instance = null)
+            string? instance = null
+        )
         {
             statusCode ??= 500;
 
@@ -38,7 +35,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 Title = title,
                 Type = type,
                 Detail = detail,
-                Instance = instance,
+                Instance = instance
             };
 
             ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
@@ -54,7 +51,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             string? title = null,
             string? type = null,
             string? detail = null,
-            string? instance = null)
+            string? instance = null
+        )
         {
             if (modelStateDictionary == null)
             {
@@ -72,7 +70,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                     Status = 422,
                     Type = type,
                     Detail = detail,
-                    Instance = instance,
+                    Instance = instance
                 };
             }
             else if (httpContext.Items[typeof(ValidationException)] is ValidationException failures)
@@ -82,7 +80,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                     Status = 422,
                     Type = type,
                     Detail = detail,
-                    Instance = instance,
+                    Instance = instance
                 };
             }
 
@@ -93,7 +91,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                     Status = statusCode,
                     Type = type,
                     Detail = detail,
-                    Instance = instance,
+                    Instance = instance
                 };
             }
 

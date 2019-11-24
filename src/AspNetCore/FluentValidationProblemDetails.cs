@@ -18,13 +18,11 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// <summary>
         /// Construct the Fluent Validation Problem Details
         /// </summary>
-        public FluentValidationProblemDetails() : this(Array.Empty<ValidationFailure>())
-        {
-        }
+        public FluentValidationProblemDetails() : this(Array.Empty<ValidationFailure>()) { }
 
 #pragma warning disable CA1062 // Validate arguments of public methods
         /// <summary>
-        /// Build Fluent Validation Problem Details from a <see cref="ValidationResult"/>
+        /// Build Fluent Validation Problem Details from a <see cref="ValidationResult" />
         /// </summary>
         /// <param name="result"></param>
         public FluentValidationProblemDetails([NotNull] ValidationResult result) : this(result.Errors)
@@ -39,7 +37,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         }
 
         /// <summary>
-        /// Build Fluent Validation Problem Details from a <see cref="IEnumerable{ValidationFailure}"/>
+        /// Build Fluent Validation Problem Details from a <see cref="IEnumerable{T}" />
         /// </summary>
         /// <param name="errors"></param>
         public FluentValidationProblemDetails([NotNull] IEnumerable<ValidationFailure> errors)
@@ -50,8 +48,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             }
 
             Errors = errors
-                .ToLookup(x => x.PropertyName)
-                .ToDictionary(z => z.Key, z => z.Select(item => new FluentValidationProblemDetail(item)).ToArray());
+               .ToLookup(x => x.PropertyName)
+               .ToDictionary(z => z.Key, z => z.Select(item => new FluentValidationProblemDetail(item)).ToArray());
         }
 
         /// <summary>

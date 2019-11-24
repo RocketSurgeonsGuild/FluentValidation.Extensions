@@ -11,7 +11,9 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
     /// <summary>
     /// Default controller that integrates with <see cref="IMediator" />
     /// </summary>
-    [PublicAPI, ApiController, ApiConventionType(typeof(MediatorApiConventions))]
+    [PublicAPI]
+    [ApiController]
+    [ApiConventionType(typeof(MediatorApiConventions))]
     public abstract class MediatorApiController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -28,7 +30,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
         /// <typeparam name="TResponse">The response model</typeparam>
         /// <param name="request">The request model</param>
         /// <param name="success">The method to call when the request succeeds</param>
-        protected async Task<ActionResult<TResponse>> Send<TResponse>(IRequest<TResponse> request, Func<TResponse, Task<ActionResult<TResponse>>> success)
+        protected async Task<ActionResult<TResponse>> Send<TResponse>(
+            IRequest<TResponse> request,
+            Func<TResponse, Task<ActionResult<TResponse>>> success
+        )
         {
             if (request is null)
             {
@@ -42,7 +47,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
 
             try
             {
-                return await success(await _mediator.Send(request, HttpContext.RequestAborted).ConfigureAwait(false)).ConfigureAwait(false);
+                return await success(await _mediator.Send(request, HttpContext.RequestAborted).ConfigureAwait(false))
+                   .ConfigureAwait(false);
             }
             catch (NotFoundException)
             {
@@ -50,12 +56,24 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             }
             catch (RequestException e)
             {
-                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
+                return BadRequest(
+                    ProblemDetailsFactory.CreateProblemDetails(
+                        HttpContext,
+                        StatusCodes.Status400BadRequest,
+                        detail: e.Message
+                    )
+                );
             }
             catch (ValidationException e)
             {
                 HttpContext.Items[typeof(ValidationException)] = e;
-                return UnprocessableEntity(ProblemDetailsFactory.CreateValidationProblemDetails(HttpContext, ModelState, StatusCodes.Status422UnprocessableEntity));
+                return UnprocessableEntity(
+                    ProblemDetailsFactory.CreateValidationProblemDetails(
+                        HttpContext,
+                        ModelState,
+                        StatusCodes.Status422UnprocessableEntity
+                    )
+                );
             }
         }
 
@@ -64,7 +82,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
         /// </summary>
         /// <param name="request">The request model</param>
         /// <param name="success">The method to call when the request succeeds</param>
-        protected async Task<ActionResult> Send<TResponse>(IRequest<TResponse> request, Func<Task<ActionResult>> success)
+        protected async Task<ActionResult> Send<TResponse>(
+            IRequest<TResponse> request,
+            Func<Task<ActionResult>> success
+        )
         {
             if (request is null)
             {
@@ -87,12 +108,24 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             }
             catch (RequestException e)
             {
-                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
+                return BadRequest(
+                    ProblemDetailsFactory.CreateProblemDetails(
+                        HttpContext,
+                        StatusCodes.Status400BadRequest,
+                        detail: e.Message
+                    )
+                );
             }
             catch (ValidationException e)
             {
                 HttpContext.Items[typeof(ValidationException)] = e;
-                return UnprocessableEntity(ProblemDetailsFactory.CreateValidationProblemDetails(HttpContext, ModelState, StatusCodes.Status422UnprocessableEntity));
+                return UnprocessableEntity(
+                    ProblemDetailsFactory.CreateValidationProblemDetails(
+                        HttpContext,
+                        ModelState,
+                        StatusCodes.Status422UnprocessableEntity
+                    )
+                );
             }
         }
 
@@ -102,7 +135,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
         /// <typeparam name="TResponse">The response model</typeparam>
         /// <param name="request">The request model</param>
         /// <param name="success">The method to call when the request succeeds</param>
-        protected async Task<ActionResult<TResponse>> Send<TResponse>(IRequest<TResponse> request, Func<TResponse, ActionResult<TResponse>> success)
+        protected async Task<ActionResult<TResponse>> Send<TResponse>(
+            IRequest<TResponse> request,
+            Func<TResponse, ActionResult<TResponse>> success
+        )
         {
             if (request is null)
             {
@@ -124,12 +160,24 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             }
             catch (RequestException e)
             {
-                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
+                return BadRequest(
+                    ProblemDetailsFactory.CreateProblemDetails(
+                        HttpContext,
+                        StatusCodes.Status400BadRequest,
+                        detail: e.Message
+                    )
+                );
             }
             catch (ValidationException e)
             {
                 HttpContext.Items[typeof(ValidationException)] = e;
-                return UnprocessableEntity(ProblemDetailsFactory.CreateValidationProblemDetails(HttpContext, ModelState, StatusCodes.Status422UnprocessableEntity));
+                return UnprocessableEntity(
+                    ProblemDetailsFactory.CreateValidationProblemDetails(
+                        HttpContext,
+                        ModelState,
+                        StatusCodes.Status422UnprocessableEntity
+                    )
+                );
             }
         }
 
@@ -161,12 +209,24 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             }
             catch (RequestException e)
             {
-                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
+                return BadRequest(
+                    ProblemDetailsFactory.CreateProblemDetails(
+                        HttpContext,
+                        StatusCodes.Status400BadRequest,
+                        detail: e.Message
+                    )
+                );
             }
             catch (ValidationException e)
             {
                 HttpContext.Items[typeof(ValidationException)] = e;
-                return UnprocessableEntity(ProblemDetailsFactory.CreateValidationProblemDetails(HttpContext, ModelState, StatusCodes.Status422UnprocessableEntity));
+                return UnprocessableEntity(
+                    ProblemDetailsFactory.CreateValidationProblemDetails(
+                        HttpContext,
+                        ModelState,
+                        StatusCodes.Status422UnprocessableEntity
+                    )
+                );
             }
         }
     }

@@ -1,13 +1,12 @@
+using System;
 using JetBrains.Annotations;
-using Rocket.Surgery.Conventions;
-using Rocket.Surgery.Extensions.FluentValidation;
 using Rocket.Surgery.Extensions.FluentValidation.MediatR;
 
 // ReSharper disable once CheckNamespace
 namespace Rocket.Surgery.Conventions
 {
     /// <summary>
-    ///  FluentValidationHostBuilderExtensions.
+    /// FluentValidationHostBuilderExtensions.
     /// </summary>
     [PublicAPI]
     public static class FluentValidationHostBuilderExtensions
@@ -21,7 +20,7 @@ namespace Rocket.Surgery.Conventions
         {
             if (builder is null)
             {
-                throw new System.ArgumentNullException(nameof(builder));
+                throw new ArgumentNullException(nameof(builder));
             }
 
             builder.Scanner.PrependConvention<FluentValidationMediatRConvention>();

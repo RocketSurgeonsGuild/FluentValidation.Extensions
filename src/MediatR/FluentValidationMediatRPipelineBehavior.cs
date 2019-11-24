@@ -1,8 +1,7 @@
-using Rocket.Surgery.Conventions;
-using FluentValidation;
-using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
 
 namespace Rocket.Surgery.Extensions.FluentValidation.MediatR
 {
@@ -11,9 +10,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.MediatR
         private readonly IValidatorFactory _validatorFactory;
 
         public FluentValidationMediatRPipelineBehavior(IValidatorFactory validatorFactory)
-        {
-            _validatorFactory = validatorFactory;
-        }
+            => _validatorFactory = validatorFactory;
 
         public async Task<R> Handle(T request, CancellationToken cancellationToken, RequestHandlerDelegate<R> next)
         {

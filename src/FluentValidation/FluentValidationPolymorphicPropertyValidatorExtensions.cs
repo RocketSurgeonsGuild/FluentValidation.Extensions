@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using Rocket.Surgery.Extensions.FluentValidation;
 
@@ -5,7 +6,7 @@ using Rocket.Surgery.Extensions.FluentValidation;
 namespace FluentValidation
 {
     /// <summary>
-    ///  FluentValidationPolymorphicPropertyValidatorExtensions.
+    /// FluentValidationPolymorphicPropertyValidatorExtensions.
     /// </summary>
     [PublicAPI]
     public static class FluentValidationPolymorphicPropertyValidatorExtensions
@@ -20,11 +21,12 @@ namespace FluentValidation
         /// <returns>IRuleBuilderOptions{T, TProperty}.</returns>
         public static IRuleBuilderOptions<T, TProperty> UsePolymorphicValidator<T, TProperty>(
             this IRuleBuilder<T, TProperty> builder,
-            IValidatorFactory validatorFactory)
+            IValidatorFactory validatorFactory
+        )
         {
             if (builder is null)
             {
-                throw new System.ArgumentNullException(nameof(builder));
+                throw new ArgumentNullException(nameof(builder));
             }
 
             return builder.SetValidator(new PolymorphicPropertyValidator<TProperty>(validatorFactory));

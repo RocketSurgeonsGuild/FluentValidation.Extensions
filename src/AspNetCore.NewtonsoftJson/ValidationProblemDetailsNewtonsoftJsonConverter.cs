@@ -10,14 +10,19 @@ using Rocket.Surgery.Conventions;
 namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
 {
     /// <summary>
-    /// A RFC 7807 compliant <see cref="Newtonsoft.Json.JsonConverter"/> for <see cref="FluentValidationProblemDetails"/>.
+    /// A RFC 7807 compliant <see cref="Newtonsoft.Json.JsonConverter" /> for <see cref="FluentValidationProblemDetails" />.
     /// </summary>
     [PublicAPI]
     public sealed class ValidationProblemDetailsNewtonsoftJsonConverter : JsonConverter<FluentValidationProblemDetails>
     {
         /// <inheritdoc />
-        public override FluentValidationProblemDetails ReadJson(JsonReader reader, Type objectType, FluentValidationProblemDetails existingValue, bool hasExistingValue,
-                                                                [NotNull] JsonSerializer serializer)
+        public override FluentValidationProblemDetails ReadJson(
+            JsonReader reader,
+            Type objectType,
+            FluentValidationProblemDetails existingValue,
+            bool hasExistingValue,
+            [NotNull] JsonSerializer serializer
+        )
         {
             if (serializer == null)
             {
@@ -36,7 +41,11 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
         }
 
         /// <inheritdoc />
-        public override void WriteJson([NotNull] JsonWriter writer, FluentValidationProblemDetails value, [NotNull] JsonSerializer serializer)
+        public override void WriteJson(
+            [NotNull] JsonWriter writer,
+            FluentValidationProblemDetails value,
+            [NotNull] JsonSerializer serializer
+        )
         {
             if (writer == null)
             {
@@ -105,15 +114,17 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
             [JsonProperty(PropertyName = "instance", NullValueHandling = NullValueHandling.Ignore)]
             public string Instance { get; set; }
 
-            [Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             // ReSharper disable once MemberCanBePrivate.Global
-            public IDictionary<string, object> Extensions { get; } = new Dictionary<string, object>(StringComparer.Ordinal);
+            public IDictionary<string, object> Extensions { get; } =
+                new Dictionary<string, object>(StringComparer.Ordinal);
 
             [JsonProperty(PropertyName = "errors")]
             public IDictionary<string, FluentValidationProblemDetail[]> Errors { get; } =
                 new Dictionary<string, FluentValidationProblemDetail[]>(StringComparer.Ordinal);
 
-            [JsonProperty(PropertyName = "rules")] public IEnumerable<string> Rules { get; internal set; } = Array.Empty<string>();
+            [JsonProperty(PropertyName = "rules")]
+            public IEnumerable<string> Rules { get; internal set; } = Array.Empty<string>();
 
             public void CopyTo(FluentValidationProblemDetails problemDetails)
             {
