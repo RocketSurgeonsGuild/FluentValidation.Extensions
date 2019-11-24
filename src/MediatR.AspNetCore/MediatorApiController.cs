@@ -48,6 +48,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             {
                 return NotFound();
             }
+            catch (RequestException e)
+            {
+                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
+            }
             catch (ValidationException e)
             {
                 HttpContext.Items[typeof(ValidationException)] = e;
@@ -80,6 +84,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             catch (NotFoundException)
             {
                 return NotFound();
+            }
+            catch (RequestException e)
+            {
+                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
             }
             catch (ValidationException e)
             {
@@ -114,6 +122,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             {
                 return NotFound();
             }
+            catch (RequestException e)
+            {
+                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
+            }
             catch (ValidationException e)
             {
                 HttpContext.Items[typeof(ValidationException)] = e;
@@ -146,6 +158,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             catch (NotFoundException)
             {
                 return NotFound();
+            }
+            catch (RequestException e)
+            {
+                return BadRequest(ProblemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest, detail: e.Message));
             }
             catch (ValidationException e)
             {

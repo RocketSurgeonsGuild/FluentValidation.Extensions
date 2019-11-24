@@ -29,14 +29,14 @@
     <PackageReference Update="NodaTime.Testing" Version="2.4.7" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
     <PackageReference Update="Rocket.Surgery.Conventions" Version="9.0.7" />
-    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="9.0.6" />
-    <PackageReference Update="Rocket.Surgery.Extensions" Version="2.0.1" />
-    <PackageReference Update="Rocket.Surgery.Extensions.Abstractions" Version="2.0.1" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="9.0.6" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="9.0.6" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="9.0.6" />
+    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="9.0.7" />
+    <PackageReference Update="Rocket.Surgery.Extensions" Version="2.1.0" />
+    <PackageReference Update="Rocket.Surgery.Extensions.Abstractions" Version="2.1.0" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="9.0.7" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="9.0.7" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="9.0.7" />
     <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="9.0.7" />
-    <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="7.0.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="7.0.2" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(TargetFramework)'!='netcoreapp2.1'">
     <PackageReference Update="FluentValidation" Version="8.5.1" />
