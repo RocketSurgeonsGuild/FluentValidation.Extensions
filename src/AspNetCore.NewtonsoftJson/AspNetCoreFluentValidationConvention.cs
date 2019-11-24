@@ -1,4 +1,6 @@
-﻿using FluentValidation.AspNetCore;
+using System;
+using FluentValidation.AspNetCore;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,8 +25,13 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
         /// Registers the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
-        public void Register(IServiceConventionContext context)
+        public void Register([NotNull] IServiceConventionContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             context.Services
                 .AddMvcCore()
                 .AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new ValidationProblemDetailsNewtonsoftJsonConverter()));

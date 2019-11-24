@@ -16,8 +16,14 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
     public sealed class ValidationProblemDetailsNewtonsoftJsonConverter : JsonConverter<FluentValidationProblemDetails>
     {
         /// <inheritdoc />
-        public override FluentValidationProblemDetails ReadJson(JsonReader reader, Type objectType, FluentValidationProblemDetails existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override FluentValidationProblemDetails ReadJson(JsonReader reader, Type objectType, FluentValidationProblemDetails existingValue, bool hasExistingValue,
+                                                                [NotNull] JsonSerializer serializer)
         {
+            if (serializer == null)
+            {
+                throw new ArgumentNullException(nameof(serializer));
+            }
+
             var annotatedProblemDetails = serializer.Deserialize<AnnotatedProblemDetails>(reader);
             if (annotatedProblemDetails == null)
             {
@@ -30,8 +36,18 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
         }
 
         /// <inheritdoc />
-        public override void WriteJson(JsonWriter writer, FluentValidationProblemDetails value, JsonSerializer serializer)
+        public override void WriteJson([NotNull] JsonWriter writer, FluentValidationProblemDetails value, [NotNull] JsonSerializer serializer)
         {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            if (serializer == null)
+            {
+                throw new ArgumentNullException(nameof(serializer));
+            }
+
             if (value == null)
             {
                 writer.WriteNull();
@@ -90,13 +106,14 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
             public string Instance { get; set; }
 
             [Newtonsoft.Json.JsonExtensionData]
+            // ReSharper disable once MemberCanBePrivate.Global
             public IDictionary<string, object> Extensions { get; } = new Dictionary<string, object>(StringComparer.Ordinal);
 
             [JsonProperty(PropertyName = "errors")]
             public IDictionary<string, FluentValidationProblemDetail[]> Errors { get; } =
                 new Dictionary<string, FluentValidationProblemDetail[]>(StringComparer.Ordinal);
 
-            [JsonProperty(PropertyName = "rules")] public string[] Rules { get; internal set; } = Array.Empty<string>();
+            [JsonProperty(PropertyName = "rules")] public IEnumerable<string> Rules { get; internal set; } = Array.Empty<string>();
 
             public void CopyTo(FluentValidationProblemDetails problemDetails)
             {

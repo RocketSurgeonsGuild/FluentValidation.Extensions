@@ -1,4 +1,6 @@
-﻿using FluentValidation.AspNetCore;
+using System;
+using FluentValidation.AspNetCore;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,18 +14,23 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
 {
     /// <summary>
     /// AspNetCoreFluentValidationConvention.
-    /// Implements the <see cref="Rocket.Surgery.Extensions.DependencyInjection.IServiceConvention" />
+    /// Implements the <see cref="IServiceConvention" />
     /// </summary>
-    /// <seealso cref="Rocket.Surgery.Extensions.DependencyInjection.IServiceConvention" />
     /// <seealso cref="IServiceConvention" />
+    [PublicAPI]
     public class AspNetCoreFluentValidationConvention : IServiceConvention
     {
         /// <summary>
         /// Registers the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
-        public void Register(IServiceConventionContext context)
+        public void Register([NotNull] IServiceConventionContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             context.Services.AddMvcCore()
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new ValidationProblemDetailsConverter()))
                 .AddFluentValidation();
@@ -32,17 +39,17 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
 
             context.Services.Configure<ApiBehaviorOptions>(o =>
             {
-                ProblemDetailsFactory? _problemDetailsFactory = null;
+                ProblemDetailsFactory? problemDetailsFactory = null;
                 o.InvalidModelStateResponseFactory = context =>
                 {
                     // ProblemDetailsFactory depends on the ApiBehaviorOptions instance. We intentionally avoid constructor injecting
                     // it in this options setup to to avoid a DI cycle.
-                    _problemDetailsFactory ??= context.HttpContext.RequestServices
+                    problemDetailsFactory ??= context.HttpContext.RequestServices
                         .GetRequiredService<ProblemDetailsFactory>();
-                    return ProblemDetailsInvalidModelStateResponse(_problemDetailsFactory, context);
+                    return problemDetailsInvalidModelStateResponse(problemDetailsFactory, context);
                 };
 
-                static IActionResult ProblemDetailsInvalidModelStateResponse(
+                static IActionResult problemDetailsInvalidModelStateResponse(
                     ProblemDetailsFactory problemDetailsFactory, ActionContext context)
                 {
                     var problemDetails =

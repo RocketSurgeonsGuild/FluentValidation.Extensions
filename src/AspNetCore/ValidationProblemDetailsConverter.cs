@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace Rocket.Surgery.AspNetCore.FluentValidation
 {
     /// <summary>
     /// A RFC 7807 compliant <see cref="JsonConverter"/> for <see cref="FluentValidationProblemDetails"/>.
     /// </summary>
+    [PublicAPI]
     public sealed class ValidationProblemDetailsConverter : JsonConverter<FluentValidationProblemDetails>
     {
         /// <inheritdoc />
@@ -21,8 +24,13 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         }
 
         /// <inheritdoc />
-        public override void Write(Utf8JsonWriter writer, FluentValidationProblemDetails value, JsonSerializerOptions options)
+        public override void Write([JetBrains.Annotations.NotNull] Utf8JsonWriter writer, FluentValidationProblemDetails value, JsonSerializerOptions options)
         {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
             if (value == null)
             {
                 writer.WriteNullValue();
@@ -33,6 +41,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             JsonSerializer.Serialize(writer, annotatedProblemDetails, options);
         }
 
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global"), UsedImplicitly]
         internal class AnnotatedProblemDetails
         {
 #pragma warning disable CS8618
@@ -81,7 +90,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             public IDictionary<string, FluentValidationProblemDetail[]> Errors { get; } =
                 new Dictionary<string, FluentValidationProblemDetail[]>(StringComparer.Ordinal);
 
-            [JsonPropertyName("rules")] public string[] Rules { get; internal set; } = Array.Empty<string>();
+            [JsonPropertyName("rules")] public IEnumerable<string> Rules { get; internal set; } = Array.Empty<string>();
 
             public void CopyTo(FluentValidationProblemDetails problemDetails)
             {

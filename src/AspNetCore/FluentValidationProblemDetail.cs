@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 using FluentValidation;
 using FluentValidation.Results;
@@ -14,8 +15,13 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// <summary>
         /// A validation error problem
         /// </summary>
-        public FluentValidationProblemDetail(ValidationFailure validationFailure)
+        public FluentValidationProblemDetail([NotNull] ValidationFailure validationFailure)
         {
+            if (validationFailure == null)
+            {
+                throw new ArgumentNullException(nameof(validationFailure));
+            }
+
             PropertyName = validationFailure.PropertyName;
             ErrorMessage = validationFailure.ErrorMessage;
             AttemptedValue = validationFailure.AttemptedValue;

@@ -1,4 +1,5 @@
-﻿using Rocket.Surgery.Extensions.FluentValidation;
+using JetBrains.Annotations;
+using Rocket.Surgery.Extensions.FluentValidation;
 
 // ReSharper disable once CheckNamespace
 namespace FluentValidation
@@ -6,6 +7,7 @@ namespace FluentValidation
     /// <summary>
     ///  FluentValidationPolymorphicPropertyValidatorExtensions.
     /// </summary>
+    [PublicAPI]
     public static class FluentValidationPolymorphicPropertyValidatorExtensions
     {
         /// <summary>
@@ -20,6 +22,11 @@ namespace FluentValidation
             this IRuleBuilder<T, TProperty> builder,
             IValidatorFactory validatorFactory)
         {
+            if (builder is null)
+            {
+                throw new System.ArgumentNullException(nameof(builder));
+            }
+
             return builder.SetValidator(new PolymorphicPropertyValidator<TProperty>(validatorFactory));
         }
     }

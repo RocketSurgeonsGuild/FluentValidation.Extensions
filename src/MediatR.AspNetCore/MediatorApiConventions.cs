@@ -1,13 +1,16 @@
-﻿#pragma warning disable CS1591
+#pragma warning disable CS1591
+using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Rocket.Surgery.AspNetCore.FluentValidation;
-using Rocket.Surgery.Extensions;
+// ReSharper disable UnusedParameter.Global
+#pragma warning disable CA1801
+#pragma warning disable RCS1163 // Unused parameter.
 
-namespace Rocket.Surgery.AspNetCore.MediatR
+namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
 {
+    [PublicAPI]
     public static class MediatorApiConventions
     {
         #region GET

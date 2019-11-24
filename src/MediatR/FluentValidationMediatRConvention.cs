@@ -1,4 +1,5 @@
-﻿using System.Linq;
+using System.Linq;
+using JetBrains.Annotations;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -18,6 +19,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.MediatR
     /// </summary>
     /// <seealso cref="Rocket.Surgery.Extensions.DependencyInjection.IServiceConvention" />
     /// <seealso cref="IServiceConvention" />
+    [PublicAPI]
     public class FluentValidationMediatRConvention : IServiceConvention
     {
         /// <summary>
@@ -26,6 +28,11 @@ namespace Rocket.Surgery.Extensions.FluentValidation.MediatR
         /// <param name="context">The context.</param>
         public void Register(IServiceConventionContext context)
         {
+            if (context is null)
+            {
+                throw new System.ArgumentNullException(nameof(context));
+            }
+
             var serviceConfig = context.GetOrAdd(() => new MediatRServiceConfiguration());
             context.Services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(FluentValidationMediatRPipelineBehavior<,>), serviceConfig.Lifetime));
         }

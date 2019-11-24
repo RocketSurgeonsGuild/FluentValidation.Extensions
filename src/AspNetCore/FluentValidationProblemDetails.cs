@@ -22,12 +22,19 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         {
         }
 
+#pragma warning disable CA1062 // Validate arguments of public methods
         /// <summary>
         /// Build Fluent Validation Problem Details from a <see cref="ValidationResult"/>
         /// </summary>
         /// <param name="result"></param>
-        public FluentValidationProblemDetails(ValidationResult result) : this(result.Errors)
+        public FluentValidationProblemDetails([NotNull] ValidationResult result) : this(result.Errors)
+#pragma warning restore CA1062 // Validate arguments of public methods
         {
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
+
             Rules = result.RuleSetsExecuted;
         }
 
@@ -35,15 +42,20 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// Build Fluent Validation Problem Details from a <see cref="IEnumerable{ValidationFailure}"/>
         /// </summary>
         /// <param name="errors"></param>
-        public FluentValidationProblemDetails(IEnumerable<ValidationFailure> errors)
+        public FluentValidationProblemDetails([NotNull] IEnumerable<ValidationFailure> errors)
         {
+            if (errors == null)
+            {
+                throw new ArgumentNullException(nameof(errors));
+            }
+
             Errors = errors
                 .ToLookup(x => x.PropertyName)
                 .ToDictionary(z => z.Key, z => z.Select(item => new FluentValidationProblemDetail(item)).ToArray());
         }
 
         /// <summary>
-        /// Gets the validation errors associated with this instance of <see cref="T:Microsoft.AspNetCore.Mvc.ValidationProblemDetails" />.
+        /// Gets the validation errors associated with this instance of <see cref="FluentValidationProblemDetail" />.
         /// </summary>
         [JsonPropertyName("errors")]
         public new IDictionary<string, FluentValidationProblemDetail[]> Errors { get; }
@@ -51,7 +63,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// <summary>
         /// The rules run with the validation
         /// </summary>
-        public string[] Rules { get; set; } = Array.Empty<string>();
+        public IEnumerable<string> Rules { get; set; } = Array.Empty<string>();
 
         internal class ProblemDetailsValidator : AbstractValidator<ProblemDetails>
         {

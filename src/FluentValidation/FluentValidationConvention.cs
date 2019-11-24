@@ -1,4 +1,5 @@
-﻿using Rocket.Surgery.Extensions.FluentValidation;
+using System;
+using Rocket.Surgery.Extensions.FluentValidation;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Conventions.Reflection;
 using Rocket.Surgery.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Linq;
+using JetBrains.Annotations;
 
 [assembly: Convention(typeof(FluentValidationConvention))]
 
@@ -23,8 +25,13 @@ namespace Rocket.Surgery.Extensions.FluentValidation
         /// Registers the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
-        public void Register(IServiceConventionContext context)
+        public void Register([NotNull] IServiceConventionContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             foreach (var item in new AssemblyScanner(
                 context
                     .AssemblyCandidateFinder

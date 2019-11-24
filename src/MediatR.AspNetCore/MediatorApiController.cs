@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Rocket.Surgery.AspNetCore.MediatR
+namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
 {
     /// <summary>
     /// Default controller that integrates with <see cref="IMediator" />
@@ -30,9 +30,19 @@ namespace Rocket.Surgery.AspNetCore.MediatR
         /// <param name="success">The method to call when the request succeeds</param>
         protected async Task<ActionResult<TResponse>> Send<TResponse>(IRequest<TResponse> request, Func<TResponse, Task<ActionResult<TResponse>>> success)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if (success is null)
+            {
+                throw new ArgumentNullException(nameof(success));
+            }
+
             try
             {
-                return await success(await _mediator.Send(request, HttpContext.RequestAborted).ConfigureAwait(false));
+                return await success(await _mediator.Send(request, HttpContext.RequestAborted).ConfigureAwait(false)).ConfigureAwait(false);
             }
             catch (NotFoundException)
             {
@@ -52,10 +62,20 @@ namespace Rocket.Surgery.AspNetCore.MediatR
         /// <param name="success">The method to call when the request succeeds</param>
         protected async Task<ActionResult> Send<TResponse>(IRequest<TResponse> request, Func<Task<ActionResult>> success)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if (success is null)
+            {
+                throw new ArgumentNullException(nameof(success));
+            }
+
             try
             {
                 await _mediator.Send(request, HttpContext.RequestAborted).ConfigureAwait(false);
-                return await success();
+                return await success().ConfigureAwait(false);
             }
             catch (NotFoundException)
             {
@@ -76,6 +96,16 @@ namespace Rocket.Surgery.AspNetCore.MediatR
         /// <param name="success">The method to call when the request succeeds</param>
         protected async Task<ActionResult<TResponse>> Send<TResponse>(IRequest<TResponse> request, Func<TResponse, ActionResult<TResponse>> success)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if (success is null)
+            {
+                throw new ArgumentNullException(nameof(success));
+            }
+
             try
             {
                 return success(await _mediator.Send(request, HttpContext.RequestAborted).ConfigureAwait(false));
@@ -98,6 +128,16 @@ namespace Rocket.Surgery.AspNetCore.MediatR
         /// <param name="success">The method to call when the request succeeds</param>
         protected async Task<ActionResult> Send<TResponse>(IRequest<TResponse> request, Func<ActionResult> success)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if (success is null)
+            {
+                throw new ArgumentNullException(nameof(success));
+            }
+
             try
             {
                 await _mediator.Send(request, HttpContext.RequestAborted).ConfigureAwait(false);

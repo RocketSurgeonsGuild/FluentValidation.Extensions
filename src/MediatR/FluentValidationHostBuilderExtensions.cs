@@ -1,4 +1,5 @@
-﻿using Rocket.Surgery.Conventions;
+using JetBrains.Annotations;
+using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.FluentValidation;
 using Rocket.Surgery.Extensions.FluentValidation.MediatR;
 
@@ -8,6 +9,7 @@ namespace Rocket.Surgery.Conventions
     /// <summary>
     ///  FluentValidationHostBuilderExtensions.
     /// </summary>
+    [PublicAPI]
     public static class FluentValidationHostBuilderExtensions
     {
         /// <summary>
@@ -17,6 +19,11 @@ namespace Rocket.Surgery.Conventions
         /// <returns>IConventionHostBuilder.</returns>
         public static IConventionHostBuilder WithFluentValidationMediatR(this IConventionHostBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new System.ArgumentNullException(nameof(builder));
+            }
+
             builder.Scanner.PrependConvention<FluentValidationMediatRConvention>();
             return builder;
         }
