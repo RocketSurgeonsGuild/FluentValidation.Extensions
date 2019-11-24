@@ -1,5 +1,0 @@
-Rocket.Surgery.Conventions.FluentValidationHostBuilderExtensions
-Rocket.Surgery.Extensions.FluentValidation.MediatR.FluentValidationMediatRConvention
-Rocket.Surgery.Extensions.FluentValidation.MediatR.FluentValidationMediatRConvention.FluentValidationMediatRConvention() -> void
-Rocket.Surgery.Extensions.FluentValidation.MediatR.FluentValidationMediatRConvention.Register(Rocket.Surgery.Extensions.DependencyInjection.IServiceConventionContext context) -> void
-static Rocket.Surgery.Conventions.FluentValidationHostBuilderExtensions.WithFluentValidationMediatR(this Rocket.Surgery.Conventions.IConventionHostBuilder builder) -> Rocket.Surgery.Conventions.IConventionHostBuilder

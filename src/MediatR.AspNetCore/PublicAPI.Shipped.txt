@@ -1,0 +1,16 @@
+Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiController
+Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiController.MediatorApiController(MediatR.IMediator mediator) -> void
+Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiController.Send<TResponse>(MediatR.IRequest<TResponse> request, System.Func<Microsoft.AspNetCore.Mvc.ActionResult> success) -> System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult>
+Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiController.Send<TResponse>(MediatR.IRequest<TResponse> request, System.Func<System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult>> success) -> System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult>
+Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiController.Send<TResponse>(MediatR.IRequest<TResponse> request, System.Func<TResponse, Microsoft.AspNetCore.Mvc.ActionResult<TResponse>> success) -> System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<TResponse>>
+Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiController.Send<TResponse>(MediatR.IRequest<TResponse> request, System.Func<TResponse, System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<TResponse>>> success) -> System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<TResponse>>
+Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Create(MediatR.IRequest<object> model) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Delete(MediatR.IRequest<object> request) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Edit(object id, MediatR.IRequest<object> model) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Find(MediatR.IRequest<object> model) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Get(MediatR.IRequest<object> model) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Other(MediatR.IRequest<object> request) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Post(MediatR.IRequest<object> model) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Put(object id, MediatR.IRequest<object> model) -> void
+static Rocket.Surgery.AspNetCore.FluentValidation.MediatR.MediatorApiConventions.Update(object id, MediatR.IRequest<object> model) -> void
