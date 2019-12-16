@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 #pragma warning disable CA1801
-#pragma warning disable RCS1163 // Unused parameter.
+#pragma warning disable RCS1163
+// Unused parameter.
 // ReSharper disable UnusedParameter.Global
 
 namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
@@ -14,35 +15,6 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
     [PublicAPI]
     public static class MediatorApiConventions
     {
-        #region DELETE
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(FluentValidationProblemDetails), StatusCodes.Status422UnprocessableEntity)]
-        [ProducesDefaultResponseType]
-        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
-        public static void Delete(
-            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
-            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
-            IRequest<object> request
-        )
-        { }
-        #endregion
-
-        #region OTHER
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(FluentValidationProblemDetails), StatusCodes.Status422UnprocessableEntity)]
-        [ProducesDefaultResponseType]
-        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
-        public static void Other(
-            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
-            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
-            IRequest<object> request
-        )
-        { }
-        #endregion
-
         #region GET
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -110,7 +82,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object id,
-            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object model
         )
@@ -126,7 +98,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object id,
-            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object model
         )
@@ -142,11 +114,41 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object id,
-            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object model
         )
         { }
         #endregion
+
+        #region DELETE
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(FluentValidationProblemDetails), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesDefaultResponseType]
+        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
+        public static void Delete(
+            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
+            IRequest<object> request
+        )
+        { }
+        #endregion
+
+        #region OTHER
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(FluentValidationProblemDetails), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesDefaultResponseType]
+        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+        public static void Other(
+            [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
+            IRequest<object> request
+        )
+        { }
+        #endregion
+
     }
 }
