@@ -25,7 +25,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
             IRequest<object> request
-        ) { }
+        )
+        { }
         #endregion
 
         #region OTHER
@@ -38,7 +39,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
             IRequest<object> request
-        ) { }
+        )
+        { }
         #endregion
 
         #region GET
@@ -52,7 +54,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
             IRequest<object> model
-        ) { }
+        )
+        { }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -64,7 +67,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
             IRequest<object> model
-        ) { }
+        )
+        { }
         #endregion
 
         #region POST
@@ -78,7 +82,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
             IRequest<object> model
-        ) { }
+        )
+        { }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -90,7 +95,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
             IRequest<object> model
-        ) { }
+        )
+        { }
         #endregion
 
         #region PUT
@@ -105,9 +111,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object id,
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
-            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
-            IRequest<object> model
-        ) { }
+            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
+            object model
+        )
+        { }
 
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -120,9 +127,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object id,
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
-            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
-            IRequest<object> model
-        ) { }
+            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
+            object model
+        )
+        { }
 
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -135,9 +143,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.MediatR
             [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object id,
             [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
-            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
-            IRequest<object> model
-        ) { }
+            [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
+            object model
+        )
+        { }
         #endregion
     }
 }
