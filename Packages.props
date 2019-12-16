@@ -31,7 +31,7 @@
     <PackageReference Update="Rocket.Surgery.Conventions" Version="9.0.7" />
     <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="9.0.7" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="2.1.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.Abstractions" Version="2.1.0" />
+    <PackageReference Update="Rocket.Surgery.Extensions.Abstractions" Version="2.1.1" />
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="9.0.7" />
     <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="9.0.7" />
     <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="9.0.7" />
@@ -43,7 +43,7 @@
     <PackageReference Update="FluentValidation.AspNetCore" Version="8.6.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="Rocket.Surgery.Extensions.Testing.FakeItEasy" Version="3.2.2" />
+    <PackageReference Update="Rocket.Surgery.Extensions.Testing.FakeItEasy" Version="3.3.0" />
     <PackageReference Update="Bogus" Version="28.4.4" />
     <PackageReference Update="coverlet.collector" Version="1.1.0" />
     <PackageReference Update="coverlet.msbuild" Version="2.7.0" />
