@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Rocket.Surgery.AspNetCore.FluentValidation;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.DependencyInjection;
@@ -31,7 +32,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.Services.AddMvcCore()
+            context.Services
+                .AddMvcCore()
                .AddJsonOptions(
                     options => options.JsonSerializerOptions.Converters.Add(new ValidationProblemDetailsConverter())
                 )

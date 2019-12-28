@@ -2,6 +2,7 @@ using System;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.DependencyInjection;
 using Rocket.Surgery.Extensions.FluentValidation.MediatR;
@@ -31,7 +32,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation.MediatR
             }
 
             var serviceConfig = context.GetOrAdd(() => new MediatRServiceConfiguration());
-            context.Services.Add(
+            context.Services.TryAddEnumerable(
                 new ServiceDescriptor(
                     typeof(IPipelineBehavior<,>),
                     typeof(FluentValidationMediatRPipelineBehavior<,>),
