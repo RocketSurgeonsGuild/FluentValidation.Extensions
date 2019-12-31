@@ -23,7 +23,7 @@
     <PackageReference Update="FluentValidation" Version="8.6.1" />
     <PackageReference Update="FluentValidation.AspNetCore" Version="8.6.1" />
     <PackageReference Update="Humanizer.Core" Version="2.7.9" />
-    <PackageReference Update="MediatR" Version="7.0.0" />
+    <PackageReference Update="MediatR" Version="8.0.0" />
     <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Update="NodaTime" Version="2.4.7" />
     <PackageReference Update="NodaTime.Testing" Version="2.4.7" />
