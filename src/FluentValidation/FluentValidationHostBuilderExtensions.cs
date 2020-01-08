@@ -16,7 +16,7 @@ namespace Rocket.Surgery.Conventions
         /// </summary>
         /// <param name="builder">The builder.</param>
         /// <returns>IConventionHostBuilder.</returns>
-        public static IConventionHostBuilder WithFluentValidation([NotNull] this IConventionHostBuilder builder)
+        public static IConventionHostBuilder UseFluentValidation([NotNull] this IConventionHostBuilder builder)
         {
             if (builder == null)
             {
