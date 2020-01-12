@@ -33,7 +33,10 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             }
 
             context.Services
-                .AddMvcCore()
+               .Configure<MvcOptions>(
+                    options => { options.Filters.Insert(0, new ValidationExceptionFilter()); }
+                )
+               .AddMvcCore()
                .AddJsonOptions(
                     options => options.JsonSerializerOptions.Converters.Add(new ValidationProblemDetailsConverter())
                 )

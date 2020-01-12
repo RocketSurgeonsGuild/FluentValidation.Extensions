@@ -65,7 +65,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
 
             if (httpContext.Items[typeof(ValidationResult)] is ValidationResult result)
             {
-                problemDetails = new FluentValidationProblemDetails(result!)
+                problemDetails = new FluentValidationProblemDetails(result!)    
                 {
                     Status = 422,
                     Type = type,
