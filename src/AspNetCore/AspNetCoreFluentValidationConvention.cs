@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using FluentValidation.AspNetCore;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Rocket.Surgery.AspNetCore.FluentValidation;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Extensions.DependencyInjection;
+using Rocket.Surgery.Extensions.FluentValidation;
 
 [assembly: Convention(typeof(AspNetCoreFluentValidationConvention))]
 
@@ -21,6 +23,17 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
     [PublicAPI]
     public class AspNetCoreFluentValidationConvention : IServiceConvention
     {
+        private readonly FluentValidationMvcConfiguration _configuration;
+
+        /// <summary>
+        /// THe validation settings
+        /// </summary>
+        /// <param name="configuration"></param>
+        public AspNetCoreFluentValidationConvention([CanBeNull] FluentValidationMvcConfiguration? configuration)
+        {
+            _configuration = configuration ?? new FluentValidationMvcConfiguration();
+        }
+
         /// <summary>
         /// Registers the specified context.
         /// </summary>
@@ -36,14 +49,26 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                .Configure<MvcOptions>(
                     options => { options.Filters.Insert(0, new ValidationExceptionFilter()); }
                 )
-               .AddMvcCore()
-               .AddJsonOptions(
+               .Configure<JsonOptions>(
                     options => options.JsonSerializerOptions.Converters.Add(new ValidationProblemDetailsConverter())
                 )
-               .AddFluentValidation();
+               .AddMvcCore()
+               .AddFluentValidation(
+                    config =>
+                    {
+                        foreach (var field in typeof(FluentValidationMvcConfiguration).GetFields(
+                            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                        ))
+                        {
+                            field.SetValue(config, field.GetValue(_configuration));
+                        }
+
+                        config.ValidatorFactoryType ??= typeof(ValidatorFactory);
+                    }
+                );
+            
             context.Services.AddSingleton<IValidatorInterceptor, ValidatorInterceptor>();
             context.Services.AddSingleton<ProblemDetailsFactory, FluentValidationProblemDetailsFactory>();
-
             context.Services.Configure<ApiBehaviorOptions>(
                 o =>
                 {

@@ -4,7 +4,9 @@
         <AssemblyTitle>Rocket.Surgery Validation for .NET Core</AssemblyTitle>
     </PropertyGroup>
     <ItemGroup>
+        <InternalsVisibleTo Include="Rocket.Surgery.AspNetCore.FluentValidation" />
         <PackageReference Include="FluentValidation" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
         <PackageReference Include="Humanizer.Core" />
         <PackageReference Include="NodaTime" />
         <PackageReference Include="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" />

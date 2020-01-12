@@ -21,16 +21,18 @@ namespace Rocket.Surgery.Extensions.FluentValidation
     public class PolymorphicPropertyValidator<T> : NoopPropertyValidator
     {
         private readonly IValidatorFactory _validatorFactory;
-
-        private readonly ConcurrentDictionary<Type, IValidator> _derivedValidators =
-            new ConcurrentDictionary<Type, IValidator>();
+        private readonly IServiceProvider _serviceProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolymorphicPropertyValidator{T}" /> class.
         /// </summary>
         /// <param name="validatorFactory">The validator factory.</param>
-        internal PolymorphicPropertyValidator(IValidatorFactory validatorFactory)
-            => _validatorFactory = validatorFactory;
+        /// <param name="serviceProvider">The service provider.</param>
+        internal PolymorphicPropertyValidator(IValidatorFactory validatorFactory, IServiceProvider serviceProvider)
+        {
+            _validatorFactory = validatorFactory;
+            _serviceProvider = serviceProvider;
+        }
 
         /// <summary>
         /// Validates the specified context.
@@ -45,21 +47,12 @@ namespace Rocket.Surgery.Extensions.FluentValidation
             }
 
             // bail out if the property is null
-            if (context.PropertyValue == null)
+            if (context.PropertyValue == null || !( context.PropertyValue is T value ))
             {
                 return Enumerable.Empty<ValidationFailure>();
             }
 
-            if (!( context.PropertyValue is T value ))
-            {
-                return Enumerable.Empty<ValidationFailure>();
-            }
-
-            if (!_derivedValidators.TryGetValue(value.GetType(), out var validator))
-            {
-                validator = _derivedValidators[value.GetType()] = _validatorFactory.GetValidator(value.GetType());
-            }
-
+            var validator = _validatorFactory.GetValidator(value.GetType());
             if (context.ParentContext.IsChildCollectionContext)
             {
                 return validator.Validate(context.ParentContext.CloneForChildValidator(value)).Errors;
@@ -70,7 +63,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation
                 PropertyChain.FromExpression(context.Rule.Expression),
                 context.ParentContext.Selector
             );
-
+            validationContext.SetServiceProvider(_serviceProvider);
             return validator.Validate(validationContext).Errors;
         }
 
@@ -91,21 +84,12 @@ namespace Rocket.Surgery.Extensions.FluentValidation
             }
 
             // bail out if the property is null
-            if (context.PropertyValue == null)
+            if (context.PropertyValue == null || !( context.PropertyValue is T value ))
             {
                 return Enumerable.Empty<ValidationFailure>();
             }
 
-            if (!( context.PropertyValue is T value ))
-            {
-                return Enumerable.Empty<ValidationFailure>();
-            }
-
-            if (!_derivedValidators.TryGetValue(value.GetType(), out var validator))
-            {
-                validator = _derivedValidators[value.GetType()] = _validatorFactory.GetValidator(value.GetType());
-            }
-
+            var validator = _validatorFactory.GetValidator(value.GetType());
             if (context.ParentContext.IsChildCollectionContext)
             {
                 return ( await validator.ValidateAsync(
@@ -119,7 +103,7 @@ namespace Rocket.Surgery.Extensions.FluentValidation
                 PropertyChain.FromExpression(context.Rule.Expression),
                 context.ParentContext.Selector
             );
-
+            validationContext.SetServiceProvider(_serviceProvider);
             return ( await validator.ValidateAsync(validationContext, cancellation).ConfigureAwait(false) ).Errors;
         }
     }

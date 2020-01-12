@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using Microsoft.Extensions.DependencyInjection;
 using Rocket.Surgery.Extensions.FluentValidation;
 
 // ReSharper disable once CheckNamespace
@@ -17,11 +18,11 @@ namespace FluentValidation
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TProperty">The type of the t property.</typeparam>
         /// <param name="builder">The builder.</param>
-        /// <param name="validatorFactory">The validator factory.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         /// <returns>IRuleBuilderOptions{T, TProperty}.</returns>
         public static IRuleBuilderOptions<T, TProperty> UsePolymorphicValidator<T, TProperty>(
             this IRuleBuilder<T, TProperty> builder,
-            IValidatorFactory validatorFactory
+            IServiceProvider serviceProvider
         )
         {
             if (builder is null)
@@ -29,7 +30,9 @@ namespace FluentValidation
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            return builder.SetValidator(new PolymorphicPropertyValidator<TProperty>(validatorFactory));
+            return builder.SetValidator(
+                ActivatorUtilities.CreateInstance<PolymorphicPropertyValidator<TProperty>>(serviceProvider)
+            );
         }
     }
 }
