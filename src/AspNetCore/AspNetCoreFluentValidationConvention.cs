@@ -29,7 +29,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// THe validation settings
         /// </summary>
         /// <param name="configuration"></param>
-        public AspNetCoreFluentValidationConvention([CanBeNull] FluentValidationMvcConfiguration? configuration)
+        public AspNetCoreFluentValidationConvention([CanBeNull] FluentValidationMvcConfiguration? configuration = null)
         {
             _configuration = configuration ?? new FluentValidationMvcConfiguration();
         }
@@ -66,7 +66,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                         config.ValidatorFactoryType ??= typeof(ValidatorFactory);
                     }
                 );
-            
+
             context.Services.AddSingleton<IValidatorInterceptor, ValidatorInterceptor>();
             context.Services.AddSingleton<ProblemDetailsFactory, FluentValidationProblemDetailsFactory>();
             context.Services.Configure<ApiBehaviorOptions>(
