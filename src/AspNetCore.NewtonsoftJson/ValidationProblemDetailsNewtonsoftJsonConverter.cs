@@ -93,9 +93,9 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
                 }
 
                 Rules = problemDetails.Rules;
-                foreach (var kvp in problemDetails.Errors)
+                foreach (var kvp in problemDetails.FluentErrors)
                 {
-                    Errors[kvp.Key] = kvp.Value;
+                    FluentErrors[kvp.Key] = kvp.Value;
                 }
             }
 
@@ -120,7 +120,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
                 new Dictionary<string, object>(StringComparer.Ordinal);
 
             [JsonProperty(PropertyName = "errors")]
-            public IDictionary<string, FluentValidationProblemDetail[]> Errors { get; } =
+            public IDictionary<string, FluentValidationProblemDetail[]> FluentErrors { get; } =
                 new Dictionary<string, FluentValidationProblemDetail[]>(StringComparer.Ordinal);
 
             [JsonProperty(PropertyName = "rules")]
@@ -140,9 +140,9 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
                 }
 
                 Rules = problemDetails.Rules;
-                foreach (var (key, value) in problemDetails.Errors)
+                foreach (var (key, value) in problemDetails.FluentErrors)
                 {
-                    Errors[key] = value;
+                    FluentErrors[key] = value;
                 }
             }
         }

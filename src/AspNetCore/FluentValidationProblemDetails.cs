@@ -47,7 +47,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 throw new ArgumentNullException(nameof(errors));
             }
 
-            Errors = errors
+            FluentErrors = errors
                .ToLookup(x => x.PropertyName)
                .ToDictionary(z => z.Key, z => z.Select(item => new FluentValidationProblemDetail(item)).ToArray());
         }
@@ -56,7 +56,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// Gets the validation errors associated with this instance of <see cref="FluentValidationProblemDetail" />.
         /// </summary>
         [JsonPropertyName("errors")]
-        public new IDictionary<string, FluentValidationProblemDetail[]> Errors { get; }
+        public IDictionary<string, FluentValidationProblemDetail[]> FluentErrors { get; }
 
         /// <summary>
         /// The rules run with the validation
@@ -87,7 +87,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             {
                 Include(new ProblemDetailsValidator());
                 RuleFor(x => x.Rules).NotNull();
-                RuleFor(x => x.Errors).NotNull();
+                RuleFor(x => x.FluentErrors).NotNull();
             }
         }
     }
