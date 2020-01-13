@@ -93,7 +93,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
                 }
 
                 Rules = problemDetails.Rules;
-                foreach (var kvp in problemDetails.Errors)
+                foreach (var kvp in problemDetails.ValidationErrors)
                 {
                     Errors[kvp.Key] = kvp.Value;
                 }
@@ -140,7 +140,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
                 }
 
                 Rules = problemDetails.Rules;
-                foreach (var (key, value) in problemDetails.Errors)
+                foreach (var (key, value) in problemDetails.ValidationErrors)
                 {
                     Errors[key] = value;
                 }

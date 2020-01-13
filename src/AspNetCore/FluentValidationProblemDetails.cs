@@ -47,7 +47,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 throw new ArgumentNullException(nameof(errors));
             }
 
-            Errors = errors
+            ValidationErrors = errors
                .ToLookup(x => x.PropertyName)
                .ToDictionary(z => z.Key, z => z.Select(item => new FluentValidationProblemDetail(item)).ToArray());
         }
@@ -55,40 +55,11 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
         /// <summary>
         /// Gets the validation errors associated with this instance of <see cref="FluentValidationProblemDetail" />.
         /// </summary>
-        [JsonPropertyName("errors")]
-        public new IDictionary<string, FluentValidationProblemDetail[]> Errors { get; }
+        public IDictionary<string, FluentValidationProblemDetail[]> ValidationErrors { get; }
 
         /// <summary>
         /// The rules run with the validation
         /// </summary>
         public IEnumerable<string> Rules { get; set; } = Array.Empty<string>();
-
-        internal class ProblemDetailsValidator : AbstractValidator<ProblemDetails>
-        {
-            public ProblemDetailsValidator()
-            {
-                RuleFor(x => x.Type).NotNull();
-                RuleFor(x => x.Title).NotNull();
-            }
-        }
-
-        internal class ValidationProblemDetailsValidator : AbstractValidator<ValidationProblemDetails>
-        {
-            public ValidationProblemDetailsValidator()
-            {
-                Include(new ProblemDetailsValidator());
-                RuleFor(x => x.Errors).NotNull();
-            }
-        }
-
-        internal class Validator : AbstractValidator<FluentValidationProblemDetails>
-        {
-            public Validator()
-            {
-                Include(new ProblemDetailsValidator());
-                RuleFor(x => x.Rules).NotNull();
-                RuleFor(x => x.Errors).NotNull();
-            }
-        }
     }
 }

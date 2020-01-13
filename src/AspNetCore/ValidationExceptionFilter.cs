@@ -7,8 +7,12 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Rocket.Surgery.AspNetCore.FluentValidation
 {
+    /// <summary>
+    /// Captures the validation exception
+    /// </summary>
     public class ValidationExceptionFilter : IExceptionFilter, IAsyncExceptionFilter
     {
+        /// <inheritdoc />
         public void OnException(ExceptionContext context)
         {
             if (!(context.Exception is ValidationException validationException)) return;
@@ -16,6 +20,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             context.Result = new UnprocessableEntityObjectResult(new FluentValidationProblemDetails(validationException.Errors));
         }
 
+        /// <inheritdoc />
         public Task OnExceptionAsync(ExceptionContext context)
         {
             OnException(context);

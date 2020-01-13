@@ -71,7 +71,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 }
 
                 Rules = problemDetails.Rules;
-                foreach (var kvp in problemDetails.Errors)
+                foreach (var kvp in problemDetails.ValidationErrors)
                 {
                     Errors[kvp.Key] = kvp.Value;
                 }
@@ -117,7 +117,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 }
 
                 Rules = problemDetails.Rules;
-                foreach (var kvp in problemDetails.Errors)
+                foreach (var kvp in problemDetails.ValidationErrors)
                 {
                     Errors[kvp.Key] = kvp.Value;
                 }
