@@ -30,14 +30,14 @@
     <PackageReference Update="NodaTime.Testing" Version="2.4.7" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="2.2.0" />
     <PackageReference Update="NodaTime.Serialization.SystemTextJson" Version="1.0.0-beta01" />
-    <PackageReference Update="Rocket.Surgery.Conventions" Version="9.1.0" />
-    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="9.1.0" />
+    <PackageReference Update="Rocket.Surgery.Conventions" Version="9.1.1" />
+    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="9.1.1" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="2.2.0" />
     <PackageReference Update="Rocket.Surgery.Extensions.Abstractions" Version="2.2.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="9.1.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="9.1.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="9.1.0" />
-    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="9.1.0" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine" Version="9.1.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.CommandLine.Abstractions" Version="9.1.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection" Version="9.1.1" />
+    <PackageReference Update="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" Version="9.1.1" />
     <PackageReference Update="Rocket.Surgery.Extensions.MediatR" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
