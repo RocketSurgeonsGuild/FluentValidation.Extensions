@@ -16,11 +16,11 @@
 <!-- history badges -->
 
 <!-- nuget packages -->
-| Package | NuGet | MyGet |
-| ------- | ----- | ----- |
-| Rocket.Surgery.Extensions.FluentValidation | [![nuget-version-m+vmydnk9vja-badge]![nuget-downloads-m+vmydnk9vja-badge]][nuget-m+vmydnk9vja] | [![myget-version-m+vmydnk9vja-badge]![myget-downloads-m+vmydnk9vja-badge]][myget-m+vmydnk9vja] |
-| Rocket.Surgery.AspNetCore.FluentValidation | [![nuget-version-misce7tl/qpg-badge]![nuget-downloads-misce7tl/qpg-badge]][nuget-misce7tl/qpg] | [![myget-version-misce7tl/qpg-badge]![myget-downloads-misce7tl/qpg-badge]][myget-misce7tl/qpg] |
-| Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson | [![nuget-version-ucoa4c2kisbg-badge]![nuget-downloads-ucoa4c2kisbg-badge]][nuget-ucoa4c2kisbg] | [![myget-version-ucoa4c2kisbg-badge]![myget-downloads-ucoa4c2kisbg-badge]][myget-ucoa4c2kisbg] |
+| Package | NuGet |
+| ------- | ----- |
+| Rocket.Surgery.Extensions.FluentValidation | [![nuget-version-m+vmydnk9vja-badge]![nuget-downloads-m+vmydnk9vja-badge]][nuget-m+vmydnk9vja] |
+| Rocket.Surgery.AspNetCore.FluentValidation | [![nuget-version-misce7tl/qpg-badge]![nuget-downloads-misce7tl/qpg-badge]][nuget-misce7tl/qpg] |
+| Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson | [![nuget-version-ucoa4c2kisbg-badge]![nuget-downloads-ucoa4c2kisbg-badge]][nuget-ucoa4c2kisbg] |
 <!-- nuget packages -->
 
 # Whats next?
@@ -45,21 +45,12 @@ TBD
 [nuget-m+vmydnk9vja]: https://www.nuget.org/packages/Rocket.Surgery.Extensions.FluentValidation/
 [nuget-version-m+vmydnk9vja-badge]: https://img.shields.io/nuget/v/Rocket.Surgery.Extensions.FluentValidation.svg?color=004880&logo=nuget&style=flat-square "NuGet Version"
 [nuget-downloads-m+vmydnk9vja-badge]: https://img.shields.io/nuget/dt/Rocket.Surgery.Extensions.FluentValidation.svg?color=004880&logo=nuget&style=flat-square "NuGet Downloads"
-[myget-m+vmydnk9vja]: https://www.myget.org/feed/rocket-surgeons-guild/package/nuget/Rocket.Surgery.Extensions.FluentValidation
-[myget-version-m+vmydnk9vja-badge]: https://img.shields.io/myget/rocket-surgeons-guild/vpre/Rocket.Surgery.Extensions.FluentValidation.svg?label=myget&color=004880&logo=nuget&style=flat-square "MyGet Pre-Release Version"
-[myget-downloads-m+vmydnk9vja-badge]: https://img.shields.io/myget/rocket-surgeons-guild/dt/Rocket.Surgery.Extensions.FluentValidation.svg?color=004880&logo=nuget&style=flat-square "MyGet Downloads"
 [nuget-misce7tl/qpg]: https://www.nuget.org/packages/Rocket.Surgery.AspNetCore.FluentValidation/
 [nuget-version-misce7tl/qpg-badge]: https://img.shields.io/nuget/v/Rocket.Surgery.AspNetCore.FluentValidation.svg?color=004880&logo=nuget&style=flat-square "NuGet Version"
 [nuget-downloads-misce7tl/qpg-badge]: https://img.shields.io/nuget/dt/Rocket.Surgery.AspNetCore.FluentValidation.svg?color=004880&logo=nuget&style=flat-square "NuGet Downloads"
-[myget-misce7tl/qpg]: https://www.myget.org/feed/rocket-surgeons-guild/package/nuget/Rocket.Surgery.AspNetCore.FluentValidation
-[myget-version-misce7tl/qpg-badge]: https://img.shields.io/myget/rocket-surgeons-guild/vpre/Rocket.Surgery.AspNetCore.FluentValidation.svg?label=myget&color=004880&logo=nuget&style=flat-square "MyGet Pre-Release Version"
-[myget-downloads-misce7tl/qpg-badge]: https://img.shields.io/myget/rocket-surgeons-guild/dt/Rocket.Surgery.AspNetCore.FluentValidation.svg?color=004880&logo=nuget&style=flat-square "MyGet Downloads"
 [nuget-ucoa4c2kisbg]: https://www.nuget.org/packages/Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson/
 [nuget-version-ucoa4c2kisbg-badge]: https://img.shields.io/nuget/v/Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson.svg?color=004880&logo=nuget&style=flat-square "NuGet Version"
 [nuget-downloads-ucoa4c2kisbg-badge]: https://img.shields.io/nuget/dt/Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson.svg?color=004880&logo=nuget&style=flat-square "NuGet Downloads"
-[myget-ucoa4c2kisbg]: https://www.myget.org/feed/rocket-surgeons-guild/package/nuget/Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
-[myget-version-ucoa4c2kisbg-badge]: https://img.shields.io/myget/rocket-surgeons-guild/vpre/Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson.svg?label=myget&color=004880&logo=nuget&style=flat-square "MyGet Pre-Release Version"
-[myget-downloads-ucoa4c2kisbg-badge]: https://img.shields.io/myget/rocket-surgeons-guild/dt/Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson.svg?color=004880&logo=nuget&style=flat-square "MyGet Downloads"
 <!-- generated references -->
 
 <!-- nuke-data
@@ -73,6 +64,4 @@ azurepipelines:
 appveyor:
   account: RocketSurgeonsGuild
   build: fluentvalidation-extensions
-myget:
-  account: rocket-surgeons-guild
 -->
