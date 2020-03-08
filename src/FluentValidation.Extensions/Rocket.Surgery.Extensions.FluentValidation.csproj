@@ -5,10 +5,11 @@
     </PropertyGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="Rocket.Surgery.AspNetCore.FluentValidation" />
+        <InternalsVisibleTo Include="Rocket.Surgery.AspNetCore.Conventions.FluentValidation" />
+        <InternalsVisibleTo Include="Rocket.Surgery.Conventions.FluentValidation" />
         <PackageReference Include="FluentValidation" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
         <PackageReference Include="Humanizer.Core" />
         <PackageReference Include="NodaTime" />
-        <PackageReference Include="Rocket.Surgery.Extensions.DependencyInjection.Abstractions" />
     </ItemGroup>
 </Project>

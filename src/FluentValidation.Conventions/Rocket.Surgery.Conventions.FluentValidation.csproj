@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+        <AssemblyTitle>Rocket.Surgery Validation for .NET Core</AssemblyTitle>
+    </PropertyGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="Rocket.Surgery.AspNetCore.FluentValidation" />
+        <InternalsVisibleTo Include="Rocket.Surgery.AspNetCore.Conventions.FluentValidation" />
+        <ProjectReference Include="../FluentValidation.Extensions/Rocket.Surgery.Extensions.FluentValidation.csproj" />
+        <PackageReference Include="Rocket.Surgery.Conventions.DependencyInjection.Abstractions" />
+    </ItemGroup>
+</Project>

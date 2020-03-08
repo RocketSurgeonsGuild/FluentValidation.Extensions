@@ -8,8 +8,8 @@
         <PackageReference Include="NodaTime.Serialization.JsonNet" />
         <PackageReference Include="NodaTime.Testing" />
         <PackageReference Include="Rocket.Surgery.Extensions" />
-        <PackageReference Include="Rocket.Surgery.Extensions.CommandLine" />
-        <PackageReference Include="Rocket.Surgery.Extensions.DependencyInjection" />
+        <PackageReference Include="Rocket.Surgery.Conventions.CommandLine" />
+        <PackageReference Include="Rocket.Surgery.Conventions.DependencyInjection" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="xunit.runner.json">
