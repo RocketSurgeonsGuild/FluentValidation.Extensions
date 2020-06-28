@@ -6,18 +6,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Rocket.Surgery.Conventions;
 using Rocket.Surgery.Conventions.Reflection;
-using Rocket.Surgery.Extensions.DependencyInjection;
+using Rocket.Surgery.Conventions.DependencyInjection;
+using Rocket.Surgery.Conventions.FluentValidation;
 using Rocket.Surgery.Extensions.FluentValidation;
 
 [assembly: Convention(typeof(FluentValidationConvention))]
 
-namespace Rocket.Surgery.Extensions.FluentValidation
+namespace Rocket.Surgery.Conventions.FluentValidation
 {
     /// <summary>
     /// ValidationConvention.
-    /// Implements the <see cref="Rocket.Surgery.Extensions.DependencyInjection.IServiceConvention" />
+    /// Implements the <see cref="IServiceConvention" />
     /// </summary>
-    /// <seealso cref="Rocket.Surgery.Extensions.DependencyInjection.IServiceConvention" />
+    /// <seealso cref="IServiceConvention" />
     /// <seealso cref="IServiceConvention" />
     public class FluentValidationConvention : IServiceConvention
     {
@@ -32,20 +33,11 @@ namespace Rocket.Surgery.Extensions.FluentValidation
                 throw new ArgumentNullException(nameof(context));
             }
 
-            foreach (var item in new AssemblyScanner(
+            context.Services.AddConventionValidatorsFromAssemblies(
                 context
                    .AssemblyCandidateFinder
-                   .GetCandidateAssemblies(nameof(FluentValidation))
-                   .SelectMany(z => z.DefinedTypes)
-                   .Select(x => x.AsType())
-            ))
-            {
-                context.Services.TryAddEnumerable(
-                    ServiceDescriptor.Transient(item.InterfaceType, item.ValidatorType)
-                );
-            }
-
-            context.Services.TryAddSingleton<IValidatorFactory, ValidatorFactory>();
+                   .GetCandidateAssemblies("FluentValidation")
+            );
         }
     }
 }
