@@ -1,75 +1,69 @@
 using System;
 using System.Reflection;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Rocket.Surgery.AspNetCore.FluentValidation;
-using Rocket.Surgery.Conventions;
-using Rocket.Surgery.Extensions.DependencyInjection;
 using Rocket.Surgery.Extensions.FluentValidation;
-
-[assembly: Convention(typeof(AspNetCoreFluentValidationConvention))]
 
 namespace Rocket.Surgery.AspNetCore.FluentValidation
 {
-    /// <summary>
-    /// AspNetCoreFluentValidationConvention.
-    /// Implements the <see cref="IServiceConvention" />
-    /// </summary>
-    /// <seealso cref="IServiceConvention" />
     [PublicAPI]
-    public class AspNetCoreFluentValidationConvention : IServiceConvention
+    public static class AspNetCoreFluentValidationExtensions
     {
-        private readonly FluentValidationMvcConfiguration _configuration;
-
-        /// <summary>
-        /// THe validation settings
-        /// </summary>
-        /// <param name="configuration"></param>
-        public AspNetCoreFluentValidationConvention([CanBeNull] FluentValidationMvcConfiguration? configuration = null)
+        public static IMvcCoreBuilder AddFluentValidationExtensions(
+            this IMvcCoreBuilder builder,
+            FluentValidationMvcConfiguration? configuration = null
+        )
         {
-            _configuration = configuration ?? new FluentValidationMvcConfiguration();
+            AddFluentValidationExtensions(builder.Services, configuration);
+            return builder;
         }
 
-        /// <summary>
-        /// Registers the specified context.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        public void Register([NotNull] IServiceConventionContext context)
+        public static IMvcBuilder AddFluentValidationExtensions(
+            this IMvcBuilder builder,
+            FluentValidationMvcConfiguration? configuration = null
+        )
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+            AddFluentValidationExtensions(builder.Services, configuration);
+            return builder;
+        }
 
-            context.Services
+        public static IServiceCollection AddFluentValidationExtensions(
+            this IServiceCollection services,
+            FluentValidationMvcConfiguration? configuration = null
+        )
+        {
+            configuration ??= new FluentValidationMvcConfiguration();
+            services
                .Configure<MvcOptions>(
-                    options => { options.Filters.Insert(0, new ValidationExceptionFilter()); }
+                    options =>
+                        options.Filters.Insert(0, new ValidationExceptionFilter())
                 )
                .Configure<JsonOptions>(
-                    options => options.JsonSerializerOptions.Converters.Add(new ValidationProblemDetailsConverter())
-                )
-               .AddMvcCore()
-               .AddFluentValidation(
-                    config =>
-                    {
-                        foreach (var field in typeof(FluentValidationMvcConfiguration).GetFields(
-                            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
-                        ))
-                        {
-                            field.SetValue(config, field.GetValue(_configuration));
-                        }
-
-                        config.ValidatorFactoryType ??= typeof(ValidatorFactory);
-                    }
+                    options =>
+                        options.JsonSerializerOptions.Converters.Add(new ValidationProblemDetailsConverter())
                 );
 
-            context.Services.AddSingleton<IValidatorInterceptor, ValidatorInterceptor>();
-            context.Services.AddSingleton<ProblemDetailsFactory, FluentValidationProblemDetailsFactory>();
-            context.Services.Configure<ApiBehaviorOptions>(
+            services.AddMvcCore().AddFluentValidation(
+                config =>
+                {
+                    foreach (var field in typeof(FluentValidationMvcConfiguration).GetFields(
+                        BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                    ))
+                    {
+                        field.SetValue(config, field.GetValue(configuration));
+                    }
+
+                    config.ValidatorFactoryType ??= typeof(ValidatorFactory);
+                }
+            );
+
+            services.AddSingleton<IValidatorInterceptor, ValidatorInterceptor>();
+            services.AddSingleton<ProblemDetailsFactory, FluentValidationProblemDetailsFactory>();
+            services.Configure<ApiBehaviorOptions>(
                 o =>
                 {
                     ProblemDetailsFactory? problemDetailsFactory = null;
@@ -110,6 +104,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                     }
                 }
             );
+
+            return services;
         }
     }
 }
