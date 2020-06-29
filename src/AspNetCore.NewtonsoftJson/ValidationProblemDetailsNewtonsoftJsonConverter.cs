@@ -2,10 +2,6 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson;
-using Rocket.Surgery.Conventions;
-
-[assembly: Convention(typeof(AspNetCoreFluentValidationNewtonsoftJsonConvention))]
 
 namespace Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson
 {

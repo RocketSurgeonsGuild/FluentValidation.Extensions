@@ -4,12 +4,17 @@
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\src\AspNetCore\Rocket.Surgery.AspNetCore.FluentValidation.csproj" />
-        <ProjectReference Include="..\..\src\FluentValidation\Rocket.Surgery.Extensions.FluentValidation.csproj" />
+        <ProjectReference Include="..\..\src\AspNetCore.NewtonsoftJson\Rocket.Surgery.AspNetCore.FluentValidation.NewtonsoftJson.csproj" />
+        <ProjectReference Include="..\..\src\Conventions.AspNetCore\Rocket.Surgery.Conventions.AspNetCore.FluentValidation.csproj" />
+        <ProjectReference Include="..\..\src\Conventions.AspNetCore.NewtonsoftJson\Rocket.Surgery.Conventions.AspNetCore.FluentValidation.NewtonsoftJson.csproj" />
+        <ProjectReference Include="..\..\src\Conventions.FluentValidation\Rocket.Surgery.Conventions.FluentValidation.csproj" />
+        <ProjectReference Include="..\..\src\Extensions.FluentValidation\Rocket.Surgery.Extensions.FluentValidation.csproj" />
+    </ItemGroup>
+    <ItemGroup>
         <PackageReference Include="NodaTime.Serialization.JsonNet" />
         <PackageReference Include="NodaTime.Testing" />
         <PackageReference Include="Rocket.Surgery.Extensions" />
-        <PackageReference Include="Rocket.Surgery.Extensions.CommandLine" />
-        <PackageReference Include="Rocket.Surgery.Extensions.DependencyInjection" />
+        <PackageReference Include="Rocket.Surgery.Conventions" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="xunit.runner.json">
