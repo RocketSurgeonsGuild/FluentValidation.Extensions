@@ -15,33 +15,28 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
     {
         public static IMvcCoreBuilder AddFluentValidationExtensions(
             this IMvcCoreBuilder builder,
-            ValidatorConfiguration? validatorConfiguration = null,
-            FluentValidationMvcConfiguration? validationMvcConfiguration = null
+            FluentValidationMvcConfiguration? configuration = null
         )
         {
-            AddFluentValidationExtensions(builder.Services, validatorConfiguration, validationMvcConfiguration);
+            AddFluentValidationExtensions(builder.Services, configuration);
             return builder;
         }
 
         public static IMvcBuilder AddFluentValidationExtensions(
             this IMvcBuilder builder,
-            ValidatorConfiguration? validatorConfiguration = null,
-            FluentValidationMvcConfiguration? validationMvcConfiguration = null
+            FluentValidationMvcConfiguration? configuration = null
         )
         {
-            AddFluentValidationExtensions(builder.Services, validatorConfiguration, validationMvcConfiguration);
+            AddFluentValidationExtensions(builder.Services, configuration);
             return builder;
         }
 
         public static IServiceCollection AddFluentValidationExtensions(
             this IServiceCollection services,
-            ValidatorConfiguration? validatorConfiguration = null,
-            FluentValidationMvcConfiguration? validationMvcConfiguration = null
+            FluentValidationMvcConfiguration? configuration = null
         )
         {
-            validatorConfiguration ??= new ValidatorConfiguration();
-            validationMvcConfiguration ??= new FluentValidationMvcConfiguration(validatorConfiguration);
-
+            configuration ??= new FluentValidationMvcConfiguration();
             services
                .Configure<MvcOptions>(
                     options =>
@@ -59,7 +54,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                         BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
                     ))
                     {
-                        field.SetValue(config, field.GetValue(validationMvcConfiguration));
+                        field.SetValue(config, field.GetValue(configuration));
                     }
 
                     config.ValidatorFactoryType ??= typeof(ValidatorFactory);
