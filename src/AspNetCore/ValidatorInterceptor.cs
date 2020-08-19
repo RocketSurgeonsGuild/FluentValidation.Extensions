@@ -5,20 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Rocket.Surgery.AspNetCore.FluentValidation
 {
-    internal class ValidatorInterceptor : IValidatorInterceptor
+    [System.Obsolete]
+    internal class ValidatorInterceptor : IActionContextValidatorInterceptor
     {
-        public ValidationContext BeforeMvcValidation(
-            ControllerContext controllerContext,
-            ValidationContext validationContext
-        ) => validationContext;
+        public IValidationContext BeforeMvcValidation(ActionContext actionContext, IValidationContext validationContext) => validationContext;
 
-        public ValidationResult AfterMvcValidation(
-            ControllerContext controllerContext,
-            ValidationContext validationContext,
-            ValidationResult result
-        )
+        public ValidationResult AfterMvcValidation(ActionContext actionContext, IValidationContext validationContext, ValidationResult result)
         {
-            controllerContext.HttpContext.Items[typeof(ValidationResult)] = result;
+            actionContext.HttpContext.Items[typeof(ValidationResult)] = result;
             return result;
         }
     }
