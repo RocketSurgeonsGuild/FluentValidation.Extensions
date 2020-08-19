@@ -39,9 +39,8 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
             FluentValidationMvcConfiguration? validationMvcConfiguration = null
         )
         {
-            validatorConfiguration ??= new ValidatorConfiguration();
+            validatorConfiguration ??= ValidatorOptions.Global;
             validationMvcConfiguration ??= new FluentValidationMvcConfiguration(validatorConfiguration);
-
             services
                .Configure<MvcOptions>(
                     options =>
@@ -66,7 +65,7 @@ namespace Rocket.Surgery.AspNetCore.FluentValidation
                 }
             );
 
-            services.AddSingleton<IValidatorInterceptor, ValidatorInterceptor>();
+            services.AddSingleton<IActionContextValidatorInterceptor, ValidatorInterceptor>();
             services.AddSingleton<ProblemDetailsFactory, FluentValidationProblemDetailsFactory>();
             services.Configure<ApiBehaviorOptions>(
                 o =>

@@ -24,20 +24,18 @@ namespace Rocket.Surgery.Conventions.AspNetCore.FluentValidation
     [PublicAPI]
     public class AspNetCoreFluentValidationConvention : IServiceConvention
     {
-        private readonly FluentValidationMvcConfiguration _validationMvcConfiguration;
-        private readonly ValidatorConfiguration _validatorConfiguration;
+        private readonly ValidatorConfiguration _configuration;
+        private readonly FluentValidationMvcConfiguration _mvcConfiguration;
 
         /// <summary>
         /// THe validation settings
         /// </summary>
         /// <param name="validatorConfiguration"></param>
         /// <param name="validationMvcConfiguration"></param>
-        public AspNetCoreFluentValidationConvention(
-            [CanBeNull] ValidatorConfiguration? validatorConfiguration = null,
-            [CanBeNull] FluentValidationMvcConfiguration? validationMvcConfiguration = null)
+        public AspNetCoreFluentValidationConvention([CanBeNull] ValidatorConfiguration? validatorConfiguration = null, FluentValidationMvcConfiguration? validationMvcConfiguration = null)
         {
-            _validatorConfiguration = validatorConfiguration ??= new ValidatorConfiguration();
-            _validationMvcConfiguration = validationMvcConfiguration ?? new FluentValidationMvcConfiguration(validatorConfiguration);
+            _configuration ??= validatorConfiguration ?? new ValidatorConfiguration();
+            _mvcConfiguration = validationMvcConfiguration ?? new FluentValidationMvcConfiguration(_configuration);
         }
 
         /// <summary>
@@ -52,7 +50,7 @@ namespace Rocket.Surgery.Conventions.AspNetCore.FluentValidation
             }
 
             context.Services
-               .AddFluentValidationExtensions(_validatorConfiguration, _validationMvcConfiguration);
+               .AddFluentValidationExtensions(_configuration, _mvcConfiguration);
         }
     }
 }
