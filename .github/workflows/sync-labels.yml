@@ -23,14 +23,14 @@ jobs:
           path: .rsg
 
       - name: merge files
-        uses: RocketSurgeonsGuild/actions/merge-labels@v0.2.3
+        uses: RocketSurgeonsGuild/actions/merge-labels@v0.2.4
         with:
           files: '.rsg/.github/labels.yml,.github/labels.yml'
           output: .github/labels.yml
 
       - name: Run Labeler
         if: success()
-        uses: crazy-max/ghaction-github-labeler@v2
+        uses: crazy-max/ghaction-github-labeler@v2.1.0
         with:
           yaml_file: .github/labels.yml
           skip_delete: false
