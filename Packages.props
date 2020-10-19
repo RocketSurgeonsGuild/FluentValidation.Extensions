@@ -25,7 +25,7 @@
     <PackageReference Update="FluentValidation.DependencyInjectionExtensions" Version="9.2.0" />
     <PackageReference Update="Humanizer.Core" Version="2.8.26" />
     <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
-    <PackageReference Update="NodaTime" Version="3.0.0" />
+    <PackageReference Update="NodaTime" Version="3.0.2" />
     <PackageReference Update="NodaTime.Serialization.JsonNet" Version="3.0.0" />
     <PackageReference Update="NodaTime.Testing" Version="3.0.0" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="10.0.0" />
