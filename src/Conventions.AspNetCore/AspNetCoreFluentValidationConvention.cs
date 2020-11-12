@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Rocket.Surgery.AspNetCore.FluentValidation;
 using Rocket.Surgery.Conventions;
@@ -42,14 +43,16 @@ namespace Rocket.Surgery.Conventions.AspNetCore.FluentValidation
         /// Registers the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
-        public void Register([NotNull] IServiceConventionContext context)
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="services">The services.</param>
+        public void Register(IConventionContext context, IConfiguration configuration, IServiceCollection services)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.Services
+            services
                .AddFluentValidationExtensions(_configuration, _mvcConfiguration);
         }
     }

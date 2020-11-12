@@ -9,6 +9,7 @@ using Rocket.Surgery.Conventions.Reflection;
 using Rocket.Surgery.Conventions.DependencyInjection;
 using Rocket.Surgery.Conventions.FluentValidation;
 using Rocket.Surgery.Extensions.FluentValidation;
+using Microsoft.Extensions.Configuration;
 
 [assembly: Convention(typeof(FluentValidationConvention))]
 
@@ -26,16 +27,18 @@ namespace Rocket.Surgery.Conventions.FluentValidation
         /// Registers the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
-        public void Register([NotNull] IServiceConventionContext context)
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="services">The services.</param>
+        public void Register(IConventionContext context, IConfiguration configuration, IServiceCollection services)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.Services.AddConventionValidatorsFromAssemblies(
+            services.AddConventionValidatorsFromAssemblies(
                 context
-                   .AssemblyCandidateFinder
+                    .AssemblyCandidateFinder
                    .GetCandidateAssemblies("FluentValidation")
             );
         }
