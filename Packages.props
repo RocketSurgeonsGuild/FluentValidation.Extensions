@@ -30,7 +30,7 @@
     <PackageReference Update="NodaTime.Testing" Version="3.0.3" />
     <PackageReference Update="Rocket.Surgery.Extensions" Version="11.0.0" />
     <PackageReference Update="Rocket.Surgery.Conventions" Version="10.0.0-beta.426" />
-    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="10.0.0-beta.426" />
+    <PackageReference Update="Rocket.Surgery.Conventions.Abstractions" Version="10.0.0-beta.98" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="Bogus" Version="32.0.1" />
