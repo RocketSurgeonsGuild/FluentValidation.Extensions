@@ -16,6 +16,8 @@
         <LangVersion>preview</LangVersion>
         <Features>strict</Features>
         <Nullable>enable</Nullable>
+        <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <NoWarn>NU5105;$(NoWarn)</NoWarn>
     </PropertyGroup>
     <ItemGroup>
